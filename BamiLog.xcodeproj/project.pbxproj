@@ -1,0 +1,588 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		58F70E0229608996009F5F40 /* BamiLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E0129608996009F5F40 /* BamiLogApp.swift */; };
+		58F70E0429608996009F5F40 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E0329608996009F5F40 /* ContentView.swift */; };
+		58F70E0629608998009F5F40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58F70E0529608998009F5F40 /* Assets.xcassets */; };
+		58F70E0929608998009F5F40 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58F70E0829608998009F5F40 /* Preview Assets.xcassets */; };
+		58F70E1329608998009F5F40 /* BamiLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E1229608998009F5F40 /* BamiLogTests.swift */; };
+		58F70E1D29608998009F5F40 /* BamiLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E1C29608998009F5F40 /* BamiLogUITests.swift */; };
+		58F70E1F29608998009F5F40 /* BamiLogUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E1E29608998009F5F40 /* BamiLogUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		58F70E0F29608998009F5F40 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 58F70DF629608996009F5F40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 58F70DFD29608996009F5F40;
+			remoteInfo = BamiLog;
+		};
+		58F70E1929608998009F5F40 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 58F70DF629608996009F5F40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 58F70DFD29608996009F5F40;
+			remoteInfo = BamiLog;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		58F70DFE29608996009F5F40 /* BamiLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BamiLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		58F70E0129608996009F5F40 /* BamiLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BamiLogApp.swift; sourceTree = "<group>"; };
+		58F70E0329608996009F5F40 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		58F70E0529608998009F5F40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		58F70E0829608998009F5F40 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		58F70E0E29608998009F5F40 /* BamiLogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BamiLogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		58F70E1229608998009F5F40 /* BamiLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BamiLogTests.swift; sourceTree = "<group>"; };
+		58F70E1829608998009F5F40 /* BamiLogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BamiLogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		58F70E1C29608998009F5F40 /* BamiLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BamiLogUITests.swift; sourceTree = "<group>"; };
+		58F70E1E29608998009F5F40 /* BamiLogUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BamiLogUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		58F70DFB29608996009F5F40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		58F70E0B29608998009F5F40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		58F70E1529608998009F5F40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		58F70DF529608996009F5F40 = {
+			isa = PBXGroup;
+			children = (
+				58F70E0029608996009F5F40 /* BamiLog */,
+				58F70E1129608998009F5F40 /* BamiLogTests */,
+				58F70E1B29608998009F5F40 /* BamiLogUITests */,
+				58F70DFF29608996009F5F40 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		58F70DFF29608996009F5F40 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				58F70DFE29608996009F5F40 /* BamiLog.app */,
+				58F70E0E29608998009F5F40 /* BamiLogTests.xctest */,
+				58F70E1829608998009F5F40 /* BamiLogUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		58F70E0029608996009F5F40 /* BamiLog */ = {
+			isa = PBXGroup;
+			children = (
+				58F70E0129608996009F5F40 /* BamiLogApp.swift */,
+				58F70E0329608996009F5F40 /* ContentView.swift */,
+				58F70E0529608998009F5F40 /* Assets.xcassets */,
+				58F70E0729608998009F5F40 /* Preview Content */,
+			);
+			path = BamiLog;
+			sourceTree = "<group>";
+		};
+		58F70E0729608998009F5F40 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				58F70E0829608998009F5F40 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		58F70E1129608998009F5F40 /* BamiLogTests */ = {
+			isa = PBXGroup;
+			children = (
+				58F70E1229608998009F5F40 /* BamiLogTests.swift */,
+			);
+			path = BamiLogTests;
+			sourceTree = "<group>";
+		};
+		58F70E1B29608998009F5F40 /* BamiLogUITests */ = {
+			isa = PBXGroup;
+			children = (
+				58F70E1C29608998009F5F40 /* BamiLogUITests.swift */,
+				58F70E1E29608998009F5F40 /* BamiLogUITestsLaunchTests.swift */,
+			);
+			path = BamiLogUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		58F70DFD29608996009F5F40 /* BamiLog */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 58F70E2229608998009F5F40 /* Build configuration list for PBXNativeTarget "BamiLog" */;
+			buildPhases = (
+				58F70DFA29608996009F5F40 /* Sources */,
+				58F70DFB29608996009F5F40 /* Frameworks */,
+				58F70DFC29608996009F5F40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BamiLog;
+			productName = BamiLog;
+			productReference = 58F70DFE29608996009F5F40 /* BamiLog.app */;
+			productType = "com.apple.product-type.application";
+		};
+		58F70E0D29608998009F5F40 /* BamiLogTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 58F70E2529608998009F5F40 /* Build configuration list for PBXNativeTarget "BamiLogTests" */;
+			buildPhases = (
+				58F70E0A29608998009F5F40 /* Sources */,
+				58F70E0B29608998009F5F40 /* Frameworks */,
+				58F70E0C29608998009F5F40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				58F70E1029608998009F5F40 /* PBXTargetDependency */,
+			);
+			name = BamiLogTests;
+			productName = BamiLogTests;
+			productReference = 58F70E0E29608998009F5F40 /* BamiLogTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		58F70E1729608998009F5F40 /* BamiLogUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 58F70E2829608998009F5F40 /* Build configuration list for PBXNativeTarget "BamiLogUITests" */;
+			buildPhases = (
+				58F70E1429608998009F5F40 /* Sources */,
+				58F70E1529608998009F5F40 /* Frameworks */,
+				58F70E1629608998009F5F40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				58F70E1A29608998009F5F40 /* PBXTargetDependency */,
+			);
+			name = BamiLogUITests;
+			productName = BamiLogUITests;
+			productReference = 58F70E1829608998009F5F40 /* BamiLogUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		58F70DF629608996009F5F40 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					58F70DFD29608996009F5F40 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					58F70E0D29608998009F5F40 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 58F70DFD29608996009F5F40;
+					};
+					58F70E1729608998009F5F40 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 58F70DFD29608996009F5F40;
+					};
+				};
+			};
+			buildConfigurationList = 58F70DF929608996009F5F40 /* Build configuration list for PBXProject "BamiLog" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 58F70DF529608996009F5F40;
+			productRefGroup = 58F70DFF29608996009F5F40 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				58F70DFD29608996009F5F40 /* BamiLog */,
+				58F70E0D29608998009F5F40 /* BamiLogTests */,
+				58F70E1729608998009F5F40 /* BamiLogUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		58F70DFC29608996009F5F40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58F70E0929608998009F5F40 /* Preview Assets.xcassets in Resources */,
+				58F70E0629608998009F5F40 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		58F70E0C29608998009F5F40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		58F70E1629608998009F5F40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		58F70DFA29608996009F5F40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58F70E0429608996009F5F40 /* ContentView.swift in Sources */,
+				58F70E0229608996009F5F40 /* BamiLogApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		58F70E0A29608998009F5F40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58F70E1329608998009F5F40 /* BamiLogTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		58F70E1429608998009F5F40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58F70E1F29608998009F5F40 /* BamiLogUITestsLaunchTests.swift in Sources */,
+				58F70E1D29608998009F5F40 /* BamiLogUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		58F70E1029608998009F5F40 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 58F70DFD29608996009F5F40 /* BamiLog */;
+			targetProxy = 58F70E0F29608998009F5F40 /* PBXContainerItemProxy */;
+		};
+		58F70E1A29608998009F5F40 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 58F70DFD29608996009F5F40 /* BamiLog */;
+			targetProxy = 58F70E1929608998009F5F40 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		58F70E2029608998009F5F40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		58F70E2129608998009F5F40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		58F70E2329608998009F5F40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BamiLog/Preview Content\"";
+				DEVELOPMENT_TEAM = QGAQ3AY3R3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.BamiLog;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		58F70E2429608998009F5F40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BamiLog/Preview Content\"";
+				DEVELOPMENT_TEAM = QGAQ3AY3R3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.BamiLog;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		58F70E2629608998009F5F40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QGAQ3AY3R3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.BamiLogTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BamiLog.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BamiLog";
+			};
+			name = Debug;
+		};
+		58F70E2729608998009F5F40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QGAQ3AY3R3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.BamiLogTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BamiLog.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BamiLog";
+			};
+			name = Release;
+		};
+		58F70E2929608998009F5F40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QGAQ3AY3R3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.BamiLogUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BamiLog;
+			};
+			name = Debug;
+		};
+		58F70E2A29608998009F5F40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QGAQ3AY3R3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.BamiLogUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BamiLog;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		58F70DF929608996009F5F40 /* Build configuration list for PBXProject "BamiLog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58F70E2029608998009F5F40 /* Debug */,
+				58F70E2129608998009F5F40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		58F70E2229608998009F5F40 /* Build configuration list for PBXNativeTarget "BamiLog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58F70E2329608998009F5F40 /* Debug */,
+				58F70E2429608998009F5F40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		58F70E2529608998009F5F40 /* Build configuration list for PBXNativeTarget "BamiLogTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58F70E2629608998009F5F40 /* Debug */,
+				58F70E2729608998009F5F40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		58F70E2829608998009F5F40 /* Build configuration list for PBXNativeTarget "BamiLogUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58F70E2929608998009F5F40 /* Debug */,
+				58F70E2A29608998009F5F40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 58F70DF629608996009F5F40 /* Project object */;
+}
