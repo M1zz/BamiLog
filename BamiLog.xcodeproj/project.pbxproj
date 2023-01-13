@@ -19,6 +19,8 @@
 		58F70E2E2960AA60009F5F40 /* StaticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E2D2960AA60009F5F40 /* StaticsView.swift */; };
 		58F70E302960AC59009F5F40 /* PersitenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E2F2960AC59009F5F40 /* PersitenceManager.swift */; };
 		58F70E3229610C70009F5F40 /* EnterProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E3129610C70009F5F40 /* EnterProfileView.swift */; };
+		63946E332971BF2700B8139B /* MilkRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63946E322971BF2700B8139B /* MilkRecord.swift */; };
+		63946E352971BFAF00B8139B /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63946E342971BFAF00B8139B /* Profile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		58F70E2D2960AA60009F5F40 /* StaticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticsView.swift; sourceTree = "<group>"; };
 		58F70E2F2960AC59009F5F40 /* PersitenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersitenceManager.swift; sourceTree = "<group>"; };
 		58F70E3129610C70009F5F40 /* EnterProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterProfileView.swift; sourceTree = "<group>"; };
+		63946E322971BF2700B8139B /* MilkRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilkRecord.swift; sourceTree = "<group>"; };
+		63946E342971BFAF00B8139B /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				58F70E0129608996009F5F40 /* BamiLogApp.swift */,
+				63946E312971BF0F00B8139B /* Model */,
 				58F70E0329608996009F5F40 /* ContentView.swift */,
 				58F70E2B29608CC5009F5F40 /* RecordView.swift */,
 				58F70E2D2960AA60009F5F40 /* StaticsView.swift */,
@@ -140,6 +145,15 @@
 				58F70E1E29608998009F5F40 /* BamiLogUITestsLaunchTests.swift */,
 			);
 			path = BamiLogUITests;
+			sourceTree = "<group>";
+		};
+		63946E312971BF0F00B8139B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				63946E322971BF2700B8139B /* MilkRecord.swift */,
+				63946E342971BFAF00B8139B /* Profile.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +293,8 @@
 				58B3F3012971A6F6003267DA /* BathTimerView.swift in Sources */,
 				58F70E302960AC59009F5F40 /* PersitenceManager.swift in Sources */,
 				58F70E0229608996009F5F40 /* BamiLogApp.swift in Sources */,
+				63946E352971BFAF00B8139B /* Profile.swift in Sources */,
+				63946E332971BF2700B8139B /* MilkRecord.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
