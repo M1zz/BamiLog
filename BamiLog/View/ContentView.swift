@@ -120,16 +120,16 @@ struct ContentView: View {
                 }
             }
             /// - 버튼 혹은 HStack에 무분별하게 달려있던 sheet 메서드를 제거하고 ScrollView에만 적용
-            .sheet(isPresented: $isShow) {
+            .fullScreenCover(isPresented: $isShow) {
                 RecordView(buttonType: $buttonType, isShow: $isShow)
             }
-            .sheet(isPresented: $isBathTimerShow) {
+            .fullScreenCover(isPresented: $isBathTimerShow) {
                 BathTimerView(isBathTimerShow: $isBathTimerShow)
             }
-            .sheet(isPresented: $isTableShow) {
+            .fullScreenCover(isPresented: $isTableShow) {
                 StaticsView(isTableShow: $isTableShow)
             }
-            .sheet(isPresented: $isEnterProfile, onDismiss: {
+            .fullScreenCover(isPresented: $isEnterProfile, onDismiss: {
                 if (profile?.name.isEmpty) == nil {
                     PersitenceManager.retrieveProfile(key: .profile) { result in
                         switch result {
