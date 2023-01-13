@@ -23,6 +23,8 @@
 		63946E352971BFAF00B8139B /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63946E342971BFAF00B8139B /* Profile.swift */; };
 		63946E392971CCFB00B8139B /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63946E382971CCFB00B8139B /* View+.swift */; };
 		63946E3B2971DB9F00B8139B /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63946E3A2971DB9F00B8139B /* UIScreen+.swift */; };
+		63946E3D2971FE2000B8139B /* BottleFeedingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63946E3C2971FE2000B8139B /* BottleFeedingView.swift */; };
+		63946E3F2972066500B8139B /* BreastFeedingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63946E3E2972066500B8139B /* BreastFeedingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		63946E342971BFAF00B8139B /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		63946E382971CCFB00B8139B /* View+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		63946E3A2971DB9F00B8139B /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
+		63946E3C2971FE2000B8139B /* BottleFeedingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleFeedingView.swift; sourceTree = "<group>"; };
+		63946E3E2972066500B8139B /* BreastFeedingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreastFeedingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 				58F70E2D2960AA60009F5F40 /* StaticsView.swift */,
 				58F70E3129610C70009F5F40 /* EnterProfileView.swift */,
 				58B3F3002971A6F6003267DA /* BathTimerView.swift */,
+				58F70E2B29608CC5009F5F40 /* RecordView.swift */,
 				58F70E0529608998009F5F40 /* Assets.xcassets */,
 				58F70E0729608998009F5F40 /* Preview Content */,
 				58F70E2F2960AC59009F5F40 /* PersitenceManager.swift */,
@@ -164,7 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				58F70E0329608996009F5F40 /* ContentView.swift */,
-				58F70E2B29608CC5009F5F40 /* RecordView.swift */,
+				63946E3C2971FE2000B8139B /* BottleFeedingView.swift */,
+				63946E3E2972066500B8139B /* BreastFeedingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -313,10 +319,12 @@
 				58F70E2C29608CC5009F5F40 /* RecordView.swift in Sources */,
 				58F70E2E2960AA60009F5F40 /* StaticsView.swift in Sources */,
 				58B3F3012971A6F6003267DA /* BathTimerView.swift in Sources */,
+				63946E3D2971FE2000B8139B /* BottleFeedingView.swift in Sources */,
 				58F70E302960AC59009F5F40 /* PersitenceManager.swift in Sources */,
 				63946E3B2971DB9F00B8139B /* UIScreen+.swift in Sources */,
 				58F70E0229608996009F5F40 /* BamiLogApp.swift in Sources */,
 				63946E352971BFAF00B8139B /* Profile.swift in Sources */,
+				63946E3F2972066500B8139B /* BreastFeedingView.swift in Sources */,
 				63946E392971CCFB00B8139B /* View+.swift in Sources */,
 				63946E332971BF2700B8139B /* MilkRecord.swift in Sources */,
 			);

@@ -291,7 +291,7 @@ struct RecordView: View {
 
 struct RecordView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordView(buttonType: .constant(.milk), isShow: .constant(true))
+        RecordView(buttonType: .constant(.feeding), isShow: .constant(true))
     }
 }
 

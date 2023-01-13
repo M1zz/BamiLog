@@ -9,9 +9,9 @@ import SwiftUI
 
 enum ButtonType {
     case milk
-    case sleep
-    case diaper
     case feeding
+    case diaper
+    case sleep
 }
 
 struct ContentView: View {
@@ -58,6 +58,8 @@ struct ContentView: View {
             // MARK: Button Grid
             // ???: 아이템이 더 추가될 계획이라서 ScrollView일까요?
             ScrollView(showsIndicators: false) {
+                /// - 기록할 종류에 맞게 버튼위치 조정
+                /// - 1행 수유기록, 2행 청결관련, 3행 수면 및 기록확인
                 Grid(horizontalSpacing: 25, verticalSpacing: 25) {
                     GridRow {
                         Button {
@@ -123,7 +125,20 @@ struct ContentView: View {
             /// - 버튼 혹은 HStack에 무분별하게 달려있던 sheet 메서드를 제거하고 ScrollView에만 적용
             /// - sheet는 내부의 Picker를 조작하다가 실수로 닫을 가능성이 크므로 fullScreenCover로 변경
             .fullScreenCover(isPresented: $isShow) {
-                RecordView(buttonType: $buttonType, isShow: $isShow)
+                NavigationStack{
+                    switch buttonType {
+                    case .milk:
+                        BottleFeedingView()
+                    case .feeding:
+                        RecordView(buttonType: $buttonType, isShow: $isShow)
+                    case .diaper:
+                        RecordView(buttonType: $buttonType, isShow: $isShow)
+                    case .sleep:
+                        RecordView(buttonType: $buttonType, isShow: $isShow)
+                    default:
+                        Text("Error")
+                    }
+                }
             }
             .fullScreenCover(isPresented: $isBathTimerShow) {
                 BathTimerView(isBathTimerShow: $isBathTimerShow)
