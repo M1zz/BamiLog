@@ -21,6 +21,7 @@
 		58F70E3229610C70009F5F40 /* EnterProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E3129610C70009F5F40 /* EnterProfileView.swift */; };
 		63946E332971BF2700B8139B /* MilkRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63946E322971BF2700B8139B /* MilkRecord.swift */; };
 		63946E352971BFAF00B8139B /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63946E342971BFAF00B8139B /* Profile.swift */; };
+		63946E392971CCFB00B8139B /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63946E382971CCFB00B8139B /* View+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		58F70E3129610C70009F5F40 /* EnterProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterProfileView.swift; sourceTree = "<group>"; };
 		63946E322971BF2700B8139B /* MilkRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilkRecord.swift; sourceTree = "<group>"; };
 		63946E342971BFAF00B8139B /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		63946E382971CCFB00B8139B /* View+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,8 +111,9 @@
 			isa = PBXGroup;
 			children = (
 				58F70E0129608996009F5F40 /* BamiLogApp.swift */,
+				63946E372971CCD000B8139B /* Extension */,
 				63946E312971BF0F00B8139B /* Model */,
-				58F70E0329608996009F5F40 /* ContentView.swift */,
+				63946E362971C7E900B8139B /* View */,
 				58F70E2B29608CC5009F5F40 /* RecordView.swift */,
 				58F70E2D2960AA60009F5F40 /* StaticsView.swift */,
 				58F70E3129610C70009F5F40 /* EnterProfileView.swift */,
@@ -154,6 +157,22 @@
 				63946E342971BFAF00B8139B /* Profile.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		63946E362971C7E900B8139B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				58F70E0329608996009F5F40 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		63946E372971CCD000B8139B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				63946E382971CCFB00B8139B /* View+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +313,7 @@
 				58F70E302960AC59009F5F40 /* PersitenceManager.swift in Sources */,
 				58F70E0229608996009F5F40 /* BamiLogApp.swift in Sources */,
 				63946E352971BFAF00B8139B /* Profile.swift in Sources */,
+				63946E392971CCFB00B8139B /* View+.swift in Sources */,
 				63946E332971BF2700B8139B /* MilkRecord.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
