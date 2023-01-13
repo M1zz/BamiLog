@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58B3F3012971A6F6003267DA /* BathTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3F3002971A6F6003267DA /* BathTimerView.swift */; };
 		58F70E0229608996009F5F40 /* BamiLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E0129608996009F5F40 /* BamiLogApp.swift */; };
 		58F70E0429608996009F5F40 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E0329608996009F5F40 /* ContentView.swift */; };
 		58F70E0629608998009F5F40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58F70E0529608998009F5F40 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		58B3F3002971A6F6003267DA /* BathTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathTimerView.swift; sourceTree = "<group>"; };
 		58F70DFE29608996009F5F40 /* BamiLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BamiLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58F70E0129608996009F5F40 /* BamiLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BamiLogApp.swift; sourceTree = "<group>"; };
 		58F70E0329608996009F5F40 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				58F70E2B29608CC5009F5F40 /* RecordView.swift */,
 				58F70E2D2960AA60009F5F40 /* StaticsView.swift */,
 				58F70E3129610C70009F5F40 /* EnterProfileView.swift */,
+				58B3F3002971A6F6003267DA /* BathTimerView.swift */,
 				58F70E0529608998009F5F40 /* Assets.xcassets */,
 				58F70E0729608998009F5F40 /* Preview Content */,
 				58F70E2F2960AC59009F5F40 /* PersitenceManager.swift */,
@@ -273,6 +276,7 @@
 				58F70E3229610C70009F5F40 /* EnterProfileView.swift in Sources */,
 				58F70E2C29608CC5009F5F40 /* RecordView.swift in Sources */,
 				58F70E2E2960AA60009F5F40 /* StaticsView.swift in Sources */,
+				58B3F3012971A6F6003267DA /* BathTimerView.swift in Sources */,
 				58F70E302960AC59009F5F40 /* PersitenceManager.swift in Sources */,
 				58F70E0229608996009F5F40 /* BamiLogApp.swift in Sources */,
 			);
