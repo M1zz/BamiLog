@@ -14,6 +14,10 @@
 		58F70E1329608998009F5F40 /* BamiLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E1229608998009F5F40 /* BamiLogTests.swift */; };
 		58F70E1D29608998009F5F40 /* BamiLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E1C29608998009F5F40 /* BamiLogUITests.swift */; };
 		58F70E1F29608998009F5F40 /* BamiLogUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E1E29608998009F5F40 /* BamiLogUITestsLaunchTests.swift */; };
+		58F70E2C29608CC5009F5F40 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E2B29608CC5009F5F40 /* RecordView.swift */; };
+		58F70E2E2960AA60009F5F40 /* StaticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E2D2960AA60009F5F40 /* StaticsView.swift */; };
+		58F70E302960AC59009F5F40 /* PersitenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E2F2960AC59009F5F40 /* PersitenceManager.swift */; };
+		58F70E3229610C70009F5F40 /* EnterProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E3129610C70009F5F40 /* EnterProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,10 @@
 		58F70E1829608998009F5F40 /* BamiLogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BamiLogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		58F70E1C29608998009F5F40 /* BamiLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BamiLogUITests.swift; sourceTree = "<group>"; };
 		58F70E1E29608998009F5F40 /* BamiLogUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BamiLogUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		58F70E2B29608CC5009F5F40 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
+		58F70E2D2960AA60009F5F40 /* StaticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticsView.swift; sourceTree = "<group>"; };
+		58F70E2F2960AC59009F5F40 /* PersitenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersitenceManager.swift; sourceTree = "<group>"; };
+		58F70E3129610C70009F5F40 /* EnterProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,8 +104,12 @@
 			children = (
 				58F70E0129608996009F5F40 /* BamiLogApp.swift */,
 				58F70E0329608996009F5F40 /* ContentView.swift */,
+				58F70E2B29608CC5009F5F40 /* RecordView.swift */,
+				58F70E2D2960AA60009F5F40 /* StaticsView.swift */,
+				58F70E3129610C70009F5F40 /* EnterProfileView.swift */,
 				58F70E0529608998009F5F40 /* Assets.xcassets */,
 				58F70E0729608998009F5F40 /* Preview Content */,
+				58F70E2F2960AC59009F5F40 /* PersitenceManager.swift */,
 			);
 			path = BamiLog;
 			sourceTree = "<group>";
@@ -258,6 +270,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				58F70E0429608996009F5F40 /* ContentView.swift in Sources */,
+				58F70E3229610C70009F5F40 /* EnterProfileView.swift in Sources */,
+				58F70E2C29608CC5009F5F40 /* RecordView.swift in Sources */,
+				58F70E2E2960AA60009F5F40 /* StaticsView.swift in Sources */,
+				58F70E302960AC59009F5F40 /* PersitenceManager.swift in Sources */,
 				58F70E0229608996009F5F40 /* BamiLogApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,7 +431,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"BamiLog/Preview Content\"";
 				DEVELOPMENT_TEAM = QGAQ3AY3R3;
 				ENABLE_PREVIEWS = YES;
@@ -429,12 +445,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.BamiLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -444,7 +463,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"BamiLog/Preview Content\"";
 				DEVELOPMENT_TEAM = QGAQ3AY3R3;
 				ENABLE_PREVIEWS = YES;
@@ -458,12 +477,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.leeo.BamiLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
