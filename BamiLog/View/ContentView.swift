@@ -125,6 +125,7 @@ struct ContentView: View {
             /// - 버튼 혹은 HStack에 무분별하게 달려있던 sheet 메서드를 제거하고 ScrollView에만 적용
             /// - sheet는 내부의 Picker를 조작하다가 실수로 닫을 가능성이 크므로 fullScreenCover로 변경
             .fullScreenCover(isPresented: $isShow) {
+                /// - View 내부의 NavigationTitle 및 Toolbar button을 위해 NavigationStack 사용
                 NavigationStack{
                     switch buttonType {
                     case .milk:

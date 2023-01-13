@@ -125,9 +125,6 @@
 				63946E312971BF0F00B8139B /* Model */,
 				63946E362971C7E900B8139B /* View */,
 				58F70E2B29608CC5009F5F40 /* RecordView.swift */,
-				58F70E2D2960AA60009F5F40 /* StaticsView.swift */,
-				58F70E3129610C70009F5F40 /* EnterProfileView.swift */,
-				58B3F3002971A6F6003267DA /* BathTimerView.swift */,
 				58F70E0529608998009F5F40 /* Assets.xcassets */,
 				58F70E0729608998009F5F40 /* Preview Content */,
 				58F70E2F2960AC59009F5F40 /* PersitenceManager.swift */,
@@ -177,6 +174,9 @@
 				63946E3E2972066500B8139B /* BreastFeedingView.swift */,
 				63946E4029720A2400B8139B /* DiaperView.swift */,
 				63946E4229720D0300B8139B /* SleepingRecordView.swift */,
+				58B3F3002971A6F6003267DA /* BathTimerView.swift */,
+				58F70E2D2960AA60009F5F40 /* StaticsView.swift */,
+				58F70E3129610C70009F5F40 /* EnterProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

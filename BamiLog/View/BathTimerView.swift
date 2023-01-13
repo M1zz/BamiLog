@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct BathTimerView: View {
+    let timer = Timer
+        .publish(every: 1, on: .main, in: .common)
+        .autoconnect()
+    
+    // MARK: View Properties
     @State var counter: Int = 0
     @State var isOver: Bool = false
     @Binding var isBathTimerShow: Bool
@@ -111,10 +116,6 @@ struct BathTimerView_Previews: PreviewProvider {
         BathTimerView(isBathTimerShow: .constant(true))
     }
 }
-
-let timer = Timer
-    .publish(every: 1, on: .main, in: .common)
-    .autoconnect()
 
 struct Clock: View {
     var counter: Int
