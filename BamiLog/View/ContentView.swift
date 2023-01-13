@@ -54,8 +54,9 @@ struct ContentView: View {
             }
             .hAlign(.leading)
             
-            // ???: 아이템이 더 추가될 계획이라서 ScrollView일까요?
             /// - 스크롤 되더라도 헤더는 올라가지 않도록 View 분리
+            // MARK: Button Grid
+            // ???: 아이템이 더 추가될 계획이라서 ScrollView일까요?
             ScrollView(showsIndicators: false) {
                 Grid(horizontalSpacing: 25, verticalSpacing: 25) {
                     GridRow {
@@ -120,6 +121,7 @@ struct ContentView: View {
                 }
             }
             /// - 버튼 혹은 HStack에 무분별하게 달려있던 sheet 메서드를 제거하고 ScrollView에만 적용
+            /// - sheet는 내부의 Picker를 조작하다가 실수로 닫을 가능성이 크므로 fullScreenCover로 변경
             .fullScreenCover(isPresented: $isShow) {
                 RecordView(buttonType: $buttonType, isShow: $isShow)
             }

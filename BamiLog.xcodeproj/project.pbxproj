@@ -116,7 +116,6 @@
 				63946E372971CCD000B8139B /* Extension */,
 				63946E312971BF0F00B8139B /* Model */,
 				63946E362971C7E900B8139B /* View */,
-				58F70E2B29608CC5009F5F40 /* RecordView.swift */,
 				58F70E2D2960AA60009F5F40 /* StaticsView.swift */,
 				58F70E3129610C70009F5F40 /* EnterProfileView.swift */,
 				58B3F3002971A6F6003267DA /* BathTimerView.swift */,
@@ -165,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				58F70E0329608996009F5F40 /* ContentView.swift */,
+				58F70E2B29608CC5009F5F40 /* RecordView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
