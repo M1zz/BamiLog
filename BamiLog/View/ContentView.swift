@@ -18,7 +18,7 @@ struct ContentView: View {
     
     @State var profile: Profile?
     
-    /// - 뷰 내부에 정의된 상수를 연산 프로퍼티로 처리
+    /// - View 내부에 정의된 상수를 연산 프로퍼티로 변경
     var diff: DateComponents {
         Calendar.current.dateComponents([.day], from: profile?.birthDate ?? Date() , to: Date())
     }
@@ -132,9 +132,9 @@ struct ContentView: View {
                     case .feeding:
                         BreastFeedingView()
                     case .diaper:
-                        RecordView(buttonType: $buttonType, isShow: $isShow)
+                        DiaperView()
                     case .sleep:
-                        RecordView(buttonType: $buttonType, isShow: $isShow)
+                        SleepingRecordView()
                     default:
                         Text("Error")
                     }

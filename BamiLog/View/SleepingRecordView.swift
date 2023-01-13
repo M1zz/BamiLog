@@ -1,5 +1,5 @@
 //
-//  BreastFeedingView.swift
+//  SleepingRecordView.swift
 //  BamiLog
 //
 //  Created by Roen White on 2023/01/14.
@@ -7,34 +7,34 @@
 
 import SwiftUI
 
-struct BreastFeedingView: View {
+struct SleepingRecordView: View {
     // MARK: View Properties
     @Environment(\.dismiss) private var dismiss
     @State private var recordTime = Date()
-    @State private var feedingTime: Int = 5
+    @State private var sleepTime: Int = 30
     
     var body: some View {
         VStack {
             Form {
-                Section("총 수유 시간") {
-                    Picker("먹인 시간", selection: $feedingTime) {
-                        ForEach(1...70, id: \.self) { number in
-                            Text("\(number)분")
+                Section("총 수면 시간") {
+                    Picker("잔 시간", selection: $sleepTime) {
+                        ForEach(1...30, id: \.self) { number in
+                            Text("\(number*5)분")
                         }
                     }
                     .pickerStyle(.wheel)
                     .frame(height: 190)
                 }
                 
-                Section("수유 종료 시각") {
+                Section("잠든 시각") {
                     DatePicker("",
                                selection: $recordTime)
-                    .datePickerStyle(WheelDatePickerStyle())
+                    .datePickerStyle(.wheel)
                     .frame(height: 190)
                 }
             }
         }
-        .navigationTitle("모유 수유 기록하기")
+        .navigationTitle("수면 기록하기")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             /// - 왼쪽 위 닫기 버튼
@@ -49,19 +49,22 @@ struct BreastFeedingView: View {
             /// - 오른쪽 위 저장 버튼
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    let feedingRecord = MilkRecord(startTime: recordTime,
-                                                  startTimeDate: recordTime.formatted("yyyy-MM-dd"),
-                                                  feedingTime: feedingTime)
+                    let sleepRecord = MilkRecord(startTime: recordTime,
+                                                 startTimeDate: recordTime.formatted("yyyy-MM-dd"),
+                                                 sleepTime: sleepTime)
+                    
                     let encoder = JSONEncoder()
-                    if let encoded = try? encoder.encode(feedingRecord) {
+                    
+                    if let encoded = try? encoder.encode(sleepRecord) {
                         UserDefaults.standard.setValue(encoded, forKey: "milkRecord")
                     }
                     
-                    PersitenceManager.updateWith(favorite: feedingRecord, actionType: .add, key: .feed) { error in
+                    PersitenceManager.updateWith(favorite: sleepRecord, actionType: .add, key: .feed) { error in
                         guard error != nil else {
                             DispatchQueue.main.async {
                                 print("OK!")
                             }
+                            
                             return
                         }
                         
@@ -73,7 +76,7 @@ struct BreastFeedingView: View {
                     
                     dismiss()
                     
-                    print("\(String(describing: recordTime)) \(String(describing: feedingTime)) 저장되었습니다.")
+                    print("\(recordTime) \(sleepTime) 저장되었습니다.")
                 } label: {
                     Text("저장")
                 }
@@ -82,10 +85,8 @@ struct BreastFeedingView: View {
     }
 }
 
-struct BreastFeedingView_Previews: PreviewProvider {
+struct SleepingRecordView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
-            BreastFeedingView()
-        }
+        SleepingRecordView()
     }
 }

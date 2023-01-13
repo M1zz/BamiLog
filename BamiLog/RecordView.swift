@@ -191,7 +191,7 @@ struct RecordView: View {
                 }
                 .padding()
                 
-                Text("시간를 선택해주세요")
+                Text("시간를 선택해주세요") // 오타있어요
                 DatePicker("",
                            selection: $recordTime)
                 .datePickerStyle(WheelDatePickerStyle())

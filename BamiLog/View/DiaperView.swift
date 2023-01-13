@@ -1,5 +1,5 @@
 //
-//  BreastFeedingView.swift
+//  DiaperView.swift
 //  BamiLog
 //
 //  Created by Roen White on 2023/01/14.
@@ -7,26 +7,22 @@
 
 import SwiftUI
 
-struct BreastFeedingView: View {
+struct DiaperView: View {
     // MARK: View Properties
     @Environment(\.dismiss) private var dismiss
     @State private var recordTime = Date()
-    @State private var feedingTime: Int = 5
+    @State private var diaperPee: Bool = false
+    @State private var diaperPoo: Bool = false
     
     var body: some View {
         VStack {
             Form {
-                Section("총 수유 시간") {
-                    Picker("먹인 시간", selection: $feedingTime) {
-                        ForEach(1...70, id: \.self) { number in
-                            Text("\(number)분")
-                        }
-                    }
-                    .pickerStyle(.wheel)
-                    .frame(height: 190)
+                Section("대소변 기록") {
+                    Toggle("쉬", isOn: $diaperPee)
+                    Toggle("응가", isOn: $diaperPoo)
                 }
                 
-                Section("수유 종료 시각") {
+                Section("기저귀 확인 시각") {
                     DatePicker("",
                                selection: $recordTime)
                     .datePickerStyle(WheelDatePickerStyle())
@@ -34,7 +30,7 @@ struct BreastFeedingView: View {
                 }
             }
         }
-        .navigationTitle("모유 수유 기록하기")
+        .navigationTitle("배변 기록하기")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             /// - 왼쪽 위 닫기 버튼
@@ -49,15 +45,18 @@ struct BreastFeedingView: View {
             /// - 오른쪽 위 저장 버튼
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    let feedingRecord = MilkRecord(startTime: recordTime,
+                    let diaperRecord = MilkRecord(startTime: recordTime,
                                                   startTimeDate: recordTime.formatted("yyyy-MM-dd"),
-                                                  feedingTime: feedingTime)
+                                                 diaperPee: diaperPee,
+                                                 diaperPoo: diaperPoo)
+                    
                     let encoder = JSONEncoder()
-                    if let encoded = try? encoder.encode(feedingRecord) {
+                    
+                    if let encoded = try? encoder.encode(diaperRecord) {
                         UserDefaults.standard.setValue(encoded, forKey: "milkRecord")
                     }
                     
-                    PersitenceManager.updateWith(favorite: feedingRecord, actionType: .add, key: .feed) { error in
+                    PersitenceManager.updateWith(favorite: diaperRecord, actionType: .add, key: .feed) { error in
                         guard error != nil else {
                             DispatchQueue.main.async {
                                 print("OK!")
@@ -73,7 +72,7 @@ struct BreastFeedingView: View {
                     
                     dismiss()
                     
-                    print("\(String(describing: recordTime)) \(String(describing: feedingTime)) 저장되었습니다.")
+                    print("\(String(describing: diaperPee)) \(String(describing: diaperPoo)) 저장되었습니다.")
                 } label: {
                     Text("저장")
                 }
@@ -82,10 +81,10 @@ struct BreastFeedingView: View {
     }
 }
 
-struct BreastFeedingView_Previews: PreviewProvider {
+struct DiaperView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            BreastFeedingView()
+            DiaperView()
         }
     }
 }
