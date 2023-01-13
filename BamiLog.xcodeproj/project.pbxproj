@@ -22,6 +22,7 @@
 		63946E332971BF2700B8139B /* MilkRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63946E322971BF2700B8139B /* MilkRecord.swift */; };
 		63946E352971BFAF00B8139B /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63946E342971BFAF00B8139B /* Profile.swift */; };
 		63946E392971CCFB00B8139B /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63946E382971CCFB00B8139B /* View+.swift */; };
+		63946E3B2971DB9F00B8139B /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63946E3A2971DB9F00B8139B /* UIScreen+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		63946E322971BF2700B8139B /* MilkRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilkRecord.swift; sourceTree = "<group>"; };
 		63946E342971BFAF00B8139B /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		63946E382971CCFB00B8139B /* View+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		63946E3A2971DB9F00B8139B /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				63946E382971CCFB00B8139B /* View+.swift */,
+				63946E3A2971DB9F00B8139B /* UIScreen+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				58F70E2E2960AA60009F5F40 /* StaticsView.swift in Sources */,
 				58B3F3012971A6F6003267DA /* BathTimerView.swift in Sources */,
 				58F70E302960AC59009F5F40 /* PersitenceManager.swift in Sources */,
+				63946E3B2971DB9F00B8139B /* UIScreen+.swift in Sources */,
 				58F70E0229608996009F5F40 /* BamiLogApp.swift in Sources */,
 				63946E352971BFAF00B8139B /* Profile.swift in Sources */,
 				63946E392971CCFB00B8139B /* View+.swift in Sources */,
