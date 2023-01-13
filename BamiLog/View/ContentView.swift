@@ -35,24 +35,16 @@ struct ContentView: View {
             // MARK: Header
             VStack(alignment: .leading, spacing: 5) {
                 if let profile {
-                    /// - 조금 더 감성을 자극하는 문구로 변경
-                    (Text("\(profile.name)")
-                        .font(.title)
-                     
-                     + Text("(이)는 오늘...")
-                        .font(.title3)
-                        .foregroundColor(.gray)
-                     )
+                    HStack(alignment: .bottom) {
+                        Text("\(profile.name)")
+                            .font(.largeTitle)
+                         
+                         Text("태어난 지 \(diff.day?.description ?? "0")일째")
+                            .font(.title2)
+                            .foregroundColor(.gray)
+                            .padding(.bottom, 2)
+                    }
                     
-                    (Text("태어난 지 ")
-                     +
-                     Text("\(diff.day?.description ?? "0")일")
-                        .foregroundColor(.orange)
-                     +
-                     Text(" 됐어요.")
-                    )
-                    .foregroundColor(.gray)
-                    .font(.title)
                 } else {
                     /// - 프로필이 생성되지 않은 경우, 입력을 유도하는 메세지 삽입
                     Text("아기의 이름과 태어난 날을 입력해주세요.")
@@ -128,6 +120,7 @@ struct ContentView: View {
                 }
                 .padding()
             }
+            /// - 버튼 혹은 HStack에 무분별하게 달려있던 sheet 메서드를 제거하고 ScrollView에만 적용
             .sheet(isPresented: $isShow) {
                 RecordView(buttonType: $buttonType, isShow: $isShow)
             }
@@ -196,6 +189,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(profile: Profile(name: "테스트", birthDate: Date()), buttonType: .milk)
+        ContentView(profile: Profile(name: "아키", birthDate: Date()), buttonType: .milk)
     }
 }
