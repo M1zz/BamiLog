@@ -57,69 +57,67 @@ struct ContentView: View {
             // ???: 아이템이 더 추가될 계획이라서 ScrollView일까요?
             /// - 스크롤 되더라도 헤더는 올라가지 않도록 View 분리
             ScrollView(showsIndicators: false) {
-                HStack(spacing: 20) {
-                    Button {
-                        buttonType = .milk
-                        isShow = true
-                    } label: {
-                        Image("feeding bottle")
-                            .resizable()
-                            .modifier(CustomButtonLabel(backgroundColor: .yellow))
+                Grid(horizontalSpacing: 25, verticalSpacing: 25) {
+                    GridRow {
+                        Button {
+                            buttonType = .milk
+                            isShow = true
+                        } label: {
+                            Image("feeding bottle")
+                                .resizable()
+                                .modifier(CustomButtonLabel(backgroundColor: .yellow))
+                        }
+                        
+                        Button {
+                            buttonType = .feeding
+                            isShow = true
+                        } label: {
+                            Image("feeding mother")
+                                .resizable()
+                                .modifier(CustomButtonLabel(backgroundColor: .yellow))
+                        }
                     }
                     
-                    Button {
-                        buttonType = .feeding
-                        isShow = true
-                    } label: {
-                        Image("feeding mother")
-                            .resizable()
-                            .modifier(CustomButtonLabel(backgroundColor: .blue))
-                    }
-                }
-                .padding()
-                
-                HStack(spacing: 20) {
-                    Button {
-                        buttonType = .diaper
-                        isShow = true
-                    } label: {
-                        Image("diaper")
-                            .resizable()
-                            .modifier(CustomButtonLabel(backgroundColor: .brown))
+                    GridRow {
+                        Button {
+                            buttonType = .diaper
+                            isShow = true
+                        } label: {
+                            Image("diaper")
+                                .resizable()
+                                .modifier(CustomButtonLabel(backgroundColor: .mint))
+                        }
+                        
+                        Button {
+                            isBathTimerShow = true
+                        } label: {
+                            Image("bath")
+                                .resizable()
+                                .modifier(CustomButtonLabel(backgroundColor: .mint))
+                        }
                     }
                     
-                    Button {
-                        isBathTimerShow = true
-                    } label: {
-                        Image("bath")
-                            .resizable()
-                            .modifier(CustomButtonLabel(backgroundColor: .green))
+                    GridRow {
+                        Button {
+                            buttonType = .sleep
+                            isShow = true
+                        } label: {
+                            Image(systemName: "moon.stars.fill")
+                                .resizable()
+                                .foregroundColor(.yellow)
+                                .modifier(CustomButtonLabel(backgroundColor: .indigo))
+                        }
+                        
+                        Button {
+                            isTableShow = true
+                        } label: {
+                            Image(systemName: "list.bullet.clipboard")
+                                .resizable()
+                                .foregroundColor(.white)
+                                .modifier(CustomButtonLabel(backgroundColor: .indigo))
+                        }
                     }
                 }
-                
-                HStack(spacing: 20) {
-                    Button {
-                        buttonType = .sleep
-                        isShow = true
-                    } label: {
-                        Image(systemName: "moon.stars.fill")
-                            .resizable()
-                            .symbolRenderingMode(.palette)
-                            .foregroundColor(.yellow)
-//                            .foregroundStyle(.white, .yellow)
-                            .modifier(CustomButtonLabel(backgroundColor: .indigo))
-                    }
-                    
-                    Button {
-                        isTableShow = true
-                    } label: {
-                        Image(systemName: "chart.bar.doc.horizontal")
-                            .resizable()
-                            .foregroundColor(.black)
-                            .modifier(CustomButtonLabel(backgroundColor: .teal))
-                    }
-                }
-                .padding()
             }
             /// - 버튼 혹은 HStack에 무분별하게 달려있던 sheet 메서드를 제거하고 ScrollView에만 적용
             .sheet(isPresented: $isShow) {
