@@ -130,7 +130,7 @@ struct ContentView: View {
                     case .milk:
                         BottleFeedingView()
                     case .feeding:
-                        RecordView(buttonType: $buttonType, isShow: $isShow)
+                        BreastFeedingView()
                     case .diaper:
                         RecordView(buttonType: $buttonType, isShow: $isShow)
                     case .sleep:
