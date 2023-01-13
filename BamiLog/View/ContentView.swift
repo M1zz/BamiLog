@@ -64,7 +64,7 @@ struct ContentView: View {
                     GridRow {
                         Button {
                             buttonType = .milk
-                            isShow = true
+                            isShow.toggle()
                         } label: {
                             Image("feeding bottle")
                                 .resizable()
@@ -73,7 +73,7 @@ struct ContentView: View {
                         
                         Button {
                             buttonType = .feeding
-                            isShow = true
+                            isShow.toggle()
                         } label: {
                             Image("feeding mother")
                                 .resizable()
@@ -84,7 +84,7 @@ struct ContentView: View {
                     GridRow {
                         Button {
                             buttonType = .diaper
-                            isShow = true
+                            isShow.toggle()
                         } label: {
                             Image("diaper")
                                 .resizable()
@@ -92,7 +92,7 @@ struct ContentView: View {
                         }
                         
                         Button {
-                            isBathTimerShow = true
+                            isBathTimerShow.toggle()
                         } label: {
                             Image("bath")
                                 .resizable()
@@ -103,7 +103,7 @@ struct ContentView: View {
                     GridRow {
                         Button {
                             buttonType = .sleep
-                            isShow = true
+                            isShow.toggle()
                         } label: {
                             Image(systemName: "moon.stars.fill")
                                 .resizable()
@@ -112,7 +112,7 @@ struct ContentView: View {
                         }
                         
                         Button {
-                            isTableShow = true
+                            isTableShow.toggle()
                         } label: {
                             Image(systemName: "list.bullet.clipboard")
                                 .resizable()
