@@ -31,7 +31,7 @@ struct ContentView: View {
     @State var buttonType: ButtonType?
 
     var body: some View {
-        VStack {
+        VStack(spacing: 15) {
             // MARK: Header
             VStack(alignment: .leading, spacing: 5) {
                 if let profile {
@@ -64,18 +64,16 @@ struct ContentView: View {
                     } label: {
                         Image("feeding bottle")
                             .resizable()
-                            .modifier(CustomButtonLabel(backgroundColor: .yellow, strokeColor: .blue))
+                            .modifier(CustomButtonLabel(backgroundColor: .yellow))
                     }
                     
                     Button {
-                        buttonType = .sleep
+                        buttonType = .feeding
                         isShow = true
                     } label: {
-                        Image(systemName: "moon.stars.fill")
+                        Image("feeding mother")
                             .resizable()
-                            .symbolRenderingMode(.palette)
-                            .foregroundStyle(.white, .yellow)
-                            .modifier(CustomButtonLabel(backgroundColor: .purple, strokeColor: .yellow))
+                            .modifier(CustomButtonLabel(backgroundColor: .blue))
                     }
                 }
                 .padding()
@@ -87,26 +85,29 @@ struct ContentView: View {
                     } label: {
                         Image("diaper")
                             .resizable()
-                            .modifier(CustomButtonLabel(backgroundColor: .brown, strokeColor: .pink))
+                            .modifier(CustomButtonLabel(backgroundColor: .brown))
                     }
                     
-                    Button {
-                        buttonType = .feeding
-                        isShow = true
-                    } label: {
-                        Image("feeding mother")
-                            .resizable()
-                            .modifier(CustomButtonLabel(backgroundColor: .blue, strokeColor: .indigo))
-                    }
-                }
-                
-                HStack(spacing: 20) {
                     Button {
                         isBathTimerShow = true
                     } label: {
                         Image("bath")
                             .resizable()
-                            .modifier(CustomButtonLabel(backgroundColor: .green, strokeColor: .pink))
+                            .modifier(CustomButtonLabel(backgroundColor: .green))
+                    }
+                }
+                
+                HStack(spacing: 20) {
+                    Button {
+                        buttonType = .sleep
+                        isShow = true
+                    } label: {
+                        Image(systemName: "moon.stars.fill")
+                            .resizable()
+                            .symbolRenderingMode(.palette)
+                            .foregroundColor(.yellow)
+//                            .foregroundStyle(.white, .yellow)
+                            .modifier(CustomButtonLabel(backgroundColor: .indigo))
                     }
                     
                     Button {
@@ -115,7 +116,7 @@ struct ContentView: View {
                         Image(systemName: "chart.bar.doc.horizontal")
                             .resizable()
                             .foregroundColor(.black)
-                            .modifier(CustomButtonLabel(backgroundColor: .teal, strokeColor: .orange))
+                            .modifier(CustomButtonLabel(backgroundColor: .teal))
                     }
                 }
                 .padding()
@@ -171,7 +172,6 @@ struct ContentView: View {
     struct CustomButtonLabel: ViewModifier {
         private let cellWidth = UIScreen.screenWidth/2 - 30
         let backgroundColor: Color
-        let strokeColor: Color
         
         func body(content: Content) -> some View {
             content
@@ -180,9 +180,6 @@ struct ContentView: View {
                 .frame(width: cellWidth, height: cellWidth)
                 .background(backgroundColor)
                 .cornerRadius(12)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12).stroke(strokeColor, lineWidth: 8)
-                )
         }
     }
 }
