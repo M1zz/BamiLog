@@ -52,7 +52,7 @@ struct ContentView: View {
                         .foregroundColor(.gray)
                 }
             }
-            .hAlign(.leading)
+            .setHorizontalAlign(.leading)
             
             /// - 스크롤 되더라도 헤더는 올라가지 않도록 View 분리
             // MARK: Button Grid

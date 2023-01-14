@@ -9,12 +9,12 @@ import SwiftUI
 
 // MARK: View Extentsions For UI Building
 extension View {
-    func hAlign(_ alignment: Alignment) -> some View {
+    func setHorizontalAlign(_ alignment: Alignment) -> some View {
         self
             .frame(maxWidth: .infinity, alignment: alignment)
     }
     
-    func vAlign(_ alignment: Alignment) -> some View {
+    func setVerticalAlign(_ alignment: Alignment) -> some View {
         self
             .frame(maxHeight: .infinity, alignment: alignment)
     }
