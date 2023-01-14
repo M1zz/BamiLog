@@ -34,23 +34,7 @@ struct ContentView: View {
         VStack(spacing: 15) {
             // MARK: Header
             VStack(alignment: .leading, spacing: 5) {
-                if let profile {
-                    HStack(alignment: .bottom) {
-                        Text("\(profile.name)")
-                            .font(.largeTitle)
-                        
-                        Text("태어난 지 \(diff.day?.description ?? "0")일째")
-                            .font(.title2)
-                            .foregroundColor(.gray)
-                            .padding(.bottom, 2)
-                    }
-                    
-                } else {
-                    /// - 프로필이 생성되지 않은 경우, 입력을 유도하는 메세지 삽입
-                    Text("아기의 이름과 태어난 날을 입력해주세요.")
-                        .font(.title2)
-                        .foregroundColor(.gray)
-                }
+                profileView()
             }
             .setHorizontalAlign(.leading)
             
@@ -71,6 +55,9 @@ struct ContentView: View {
                                 .modifier(CustomButtonLabel(backgroundColor: .yellow, strokeColor: .blue ))
                             
                         }
+                        .sheet(isPresented: $isShow) {
+                            RecordView(buttonType: $buttonType, isShow: $isShow)
+                        }
                         
                         Button {
                             buttonType = .feeding
@@ -79,6 +66,9 @@ struct ContentView: View {
                             Image("feeding mother")
                                 .resizable()
                                 .modifier(CustomButtonLabel(backgroundColor: .purple, strokeColor: .yellow))
+                        }
+                        .sheet(isPresented: $isShow) {
+                            RecordView(buttonType: $buttonType, isShow: $isShow)
                         }
                     }
                     
@@ -91,6 +81,9 @@ struct ContentView: View {
                                 .resizable()
                                 .modifier(CustomButtonLabel(backgroundColor: .brown, strokeColor: .pink))
                         }
+                        .sheet(isPresented: $isShow) {
+                            RecordView(buttonType: $buttonType, isShow: $isShow)
+                        }
                         
                         Button {
                             isBathTimerShow.toggle()
@@ -98,6 +91,9 @@ struct ContentView: View {
                             Image("bath")
                                 .resizable()
                                 .modifier(CustomButtonLabel(backgroundColor: .blue, strokeColor: .indigo))
+                        }
+                        .sheet(isPresented: $isBathTimerShow) {
+                            BathTimerView(isBathTimerShow: $isBathTimerShow)
                         }
                     }
                     
@@ -111,6 +107,9 @@ struct ContentView: View {
                                 .foregroundColor(.yellow)
                                 .modifier(CustomButtonLabel(backgroundColor: .teal, strokeColor: .orange))
                         }
+                        .sheet(isPresented: $isShow) {
+                            RecordView(buttonType: $buttonType, isShow: $isShow)
+                        }
                         
                         Button {
                             isTableShow.toggle()
@@ -120,51 +119,54 @@ struct ContentView: View {
                                 .foregroundColor(.white)
                                 .modifier(CustomButtonLabel(backgroundColor: .green, strokeColor: .pink))
                         }
-                    }
-                }
-            }
-            /// - 버튼 혹은 HStack에 무분별하게 달려있던 sheet 메서드를 제거하고 ScrollView에만 적용
-            /// - sheet는 내부의 Picker를 조작하다가 실수로 닫을 가능성이 크므로 fullScreenCover로 변경
-            .fullScreenCover(isPresented: $isShow) {
-                /// - View 내부의 NavigationTitle 및 Toolbar button을 위해 NavigationStack 사용
-                NavigationStack{
-                    switch buttonType {
-                    case .milk:
-                        BottleFeedingView()
-                    case .feeding:
-                        BreastFeedingView()
-                    case .diaper:
-                        DiaperView()
-                    case .sleep:
-                        SleepingRecordView()
-                    default:
-                        Text("Error")
-                    }
-                }
-            }
-            .fullScreenCover(isPresented: $isBathTimerShow) {
-                BathTimerView(isBathTimerShow: $isBathTimerShow)
-            }
-            .fullScreenCover(isPresented: $isTableShow) {
-                StaticsView(isTableShow: $isTableShow)
-            }
-            .fullScreenCover(isPresented: $isEnterProfile, onDismiss: {
-                if (profile?.name.isEmpty) == nil {
-                    PersitenceManager.retrieveProfile(key: .profile) { result in
-                        switch result {
-                        case .success(let babyProfile):
-                            profile = babyProfile
-                        case .failure(_):
-                            DispatchQueue.main.async {
-                                isEnterProfile = true
-                                print("Error profile")
-                            }
+                        .sheet(isPresented: $isTableShow) {
+                            StaticsView(isTableShow: $isTableShow)
                         }
                     }
                 }
-            }, content: {
-                EnterProfileView(isEnterProfile: $isEnterProfile)
-            })
+            }
+            //            /// - 버튼 혹은 HStack에 무분별하게 달려있던 sheet 메서드를 제거하고 ScrollView에만 적용
+            //            /// - sheet는 내부의 Picker를 조작하다가 실수로 닫을 가능성이 크므로 fullScreenCover로 변경
+            //            .fullScreenCover(isPresented: $isShow) {
+            //                /// - View 내부의 NavigationTitle 및 Toolbar button을 위해 NavigationStack 사용
+            //                NavigationStack{
+            //                    switch buttonType {
+            //                    case .milk:
+            //                        BottleFeedingView()
+            //                    case .feeding:
+            //                        BreastFeedingView()
+            //                    case .diaper:
+            //                        DiaperView()
+            //                    case .sleep:
+            //                        SleepingRecordView()
+            //                    default:
+            //                        Text("Error")
+            //                    }
+            //                }
+            //            }
+            //            .fullScreenCover(isPresented: $isBathTimerShow) {
+            //                BathTimerView(isBathTimerShow: $isBathTimerShow)
+            //            }
+            //            .fullScreenCover(isPresented: $isTableShow) {
+            //                StaticsView(isTableShow: $isTableShow)
+            //            }
+            //            .fullScreenCover(isPresented: $isEnterProfile, onDismiss: {
+            //                if (profile?.name.isEmpty) == nil {
+            //                    PersitenceManager.retrieveProfile(key: .profile) { result in
+            //                        switch result {
+            //                        case .success(let babyProfile):
+            //                            profile = babyProfile
+            //                        case .failure(_):
+            //                            DispatchQueue.main.async {
+            //                                isEnterProfile = true
+            //                                print("Error profile")
+            //                            }
+            //                        }
+            //                    }
+            //                }
+            //            }, content: {
+            //                EnterProfileView(isEnterProfile: $isEnterProfile)
+            //            })
             .onAppear {
                 if (profile?.name.isEmpty) == nil {
                     PersitenceManager.retrieveProfile(key: .profile) { result in
@@ -183,6 +185,27 @@ struct ContentView: View {
         }
         .padding()
         
+    }
+    
+    @ViewBuilder
+    private func profileView() -> some View {
+        if let profile {
+            HStack(alignment: .bottom) {
+                Text("\(profile.name)")
+                    .font(.largeTitle)
+                
+                Text("태어난 지 \(diff.day?.description ?? "0")일째")
+                    .font(.title2)
+                    .foregroundColor(.gray)
+                    .padding(.bottom, 2)
+            }
+            
+        } else {
+            /// - 프로필이 생성되지 않은 경우, 입력을 유도하는 메세지 삽입
+            Text("아기의 이름과 태어난 날을 입력해주세요.")
+                .font(.title2)
+                .foregroundColor(.gray)
+        }
     }
     
     // MARK: 버튼의 모양이 전부 똑같아서 다른 것들(배경색, 테두리색)만 받도록 커스텀 수정자를 작성
