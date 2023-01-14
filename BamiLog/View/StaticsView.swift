@@ -16,7 +16,6 @@ struct StaticsView: View {
     var body: some View {
         VStack {
             HStack {
-                
                 CloseView()
             }
             List {
