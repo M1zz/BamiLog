@@ -29,7 +29,7 @@ struct ContentView: View {
     @State var isEnterProfile: Bool = false
     @State var isBathTimerShow: Bool = false
     @State var buttonType: ButtonType?
-
+    
     var body: some View {
         VStack(spacing: 15) {
             // MARK: Header
@@ -38,8 +38,8 @@ struct ContentView: View {
                     HStack(alignment: .bottom) {
                         Text("\(profile.name)")
                             .font(.largeTitle)
-                         
-                         Text("태어난 지 \(diff.day?.description ?? "0")일째")
+                        
+                        Text("태어난 지 \(diff.day?.description ?? "0")일째")
                             .font(.title2)
                             .foregroundColor(.gray)
                             .padding(.bottom, 2)
@@ -68,7 +68,8 @@ struct ContentView: View {
                         } label: {
                             Image("feeding bottle")
                                 .resizable()
-                                .modifier(CustomButtonLabel(backgroundColor: .yellow))
+                                .modifier(CustomButtonLabel(backgroundColor: .yellow, strokeColor: .blue ))
+                            
                         }
                         
                         Button {
@@ -77,7 +78,7 @@ struct ContentView: View {
                         } label: {
                             Image("feeding mother")
                                 .resizable()
-                                .modifier(CustomButtonLabel(backgroundColor: .yellow))
+                                .modifier(CustomButtonLabel(backgroundColor: .purple, strokeColor: .yellow))
                         }
                     }
                     
@@ -88,7 +89,7 @@ struct ContentView: View {
                         } label: {
                             Image("diaper")
                                 .resizable()
-                                .modifier(CustomButtonLabel(backgroundColor: .mint))
+                                .modifier(CustomButtonLabel(backgroundColor: .brown, strokeColor: .pink))
                         }
                         
                         Button {
@@ -96,7 +97,7 @@ struct ContentView: View {
                         } label: {
                             Image("bath")
                                 .resizable()
-                                .modifier(CustomButtonLabel(backgroundColor: .mint))
+                                .modifier(CustomButtonLabel(backgroundColor: .blue, strokeColor: .indigo))
                         }
                     }
                     
@@ -108,7 +109,7 @@ struct ContentView: View {
                             Image(systemName: "moon.stars.fill")
                                 .resizable()
                                 .foregroundColor(.yellow)
-                                .modifier(CustomButtonLabel(backgroundColor: .indigo))
+                                .modifier(CustomButtonLabel(backgroundColor: .teal, strokeColor: .orange))
                         }
                         
                         Button {
@@ -117,7 +118,7 @@ struct ContentView: View {
                             Image(systemName: "list.bullet.clipboard")
                                 .resizable()
                                 .foregroundColor(.white)
-                                .modifier(CustomButtonLabel(backgroundColor: .indigo))
+                                .modifier(CustomButtonLabel(backgroundColor: .green, strokeColor: .pink))
                         }
                     }
                 }
@@ -188,6 +189,7 @@ struct ContentView: View {
     struct CustomButtonLabel: ViewModifier {
         private let cellWidth = UIScreen.screenWidth/2 - 30
         let backgroundColor: Color
+        var strokeColor: Color = .clear
         
         func body(content: Content) -> some View {
             content
@@ -195,6 +197,10 @@ struct ContentView: View {
                 .padding()
                 .frame(width: cellWidth, height: cellWidth)
                 .background(backgroundColor)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(strokeColor, lineWidth: 12)
+                )
                 .cornerRadius(12)
         }
     }
