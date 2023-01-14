@@ -111,7 +111,7 @@ struct RecordView: View {
                 }
                 .pickerStyle(.wheel)
                 
-                Text("잠든 시간를 선택해주세요")
+                Text("잠든 시간을 선택해주세요")
                 DatePicker("",
                            selection: $recordTime)
                 .datePickerStyle(WheelDatePickerStyle())
@@ -191,7 +191,7 @@ struct RecordView: View {
                 }
                 .padding()
                 
-                Text("시간를 선택해주세요") // 오타있어요
+                Text("시간을 선택해주세요")
                 DatePicker("",
                            selection: $recordTime)
                 .datePickerStyle(WheelDatePickerStyle())
@@ -241,7 +241,7 @@ struct RecordView: View {
                 }
                 .pickerStyle(.wheel)
                 
-                Text("시간를 선택해주세요")
+                Text("시간을 선택해주세요")
                 DatePicker("",
                            selection: $recordTime)
                 .datePickerStyle(WheelDatePickerStyle())
@@ -291,7 +291,7 @@ struct RecordView: View {
 
 struct RecordView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordView(buttonType: .constant(.feeding), isShow: .constant(true))
+        RecordView(buttonType: .constant(.milk), isShow: .constant(true))
     }
 }
 
