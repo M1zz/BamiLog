@@ -7,15 +7,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1C613F25-EC7F-47ED-AFB5-BAC1C4161EF2"
+            uuid = "7440A9BD-3212-4DEB-B891-5BCA887D1783"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BamiLog/ContentView.swift"
+            filePath = "BamiLog/View/CoworkView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -23,15 +23,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8B2F6DF3-AA13-49BF-B1E3-D19C52CA1F26"
+            uuid = "5823D5C1-49FC-4581-B102-F4A6507BBE1C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BamiLog/StaticsView.swift"
+            filePath = "BamiLog/View/Login/LoginView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -39,31 +39,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B20D9D04-9307-45C3-8442-BE967F7FF78D"
+            uuid = "886A8544-9912-4EE5-B613-48C2F5ED2BED"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BamiLog/StaticsView.swift"
+            filePath = "BamiLog/View/CoworkView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "587DD581-B4C8-4F9D-9C1D-F4B75C2DCAC7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BamiLog/View/ContentView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>

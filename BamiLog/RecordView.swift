@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-// 1. 홈 화면 이쁘게 꾸미기
-// 2. 저장하면 뷰 사라지기
+import FirebaseAuth
+import FirebaseDatabase
 
 struct RecordView: View {
     @Binding var buttonType: ButtonType?
@@ -17,6 +17,8 @@ struct RecordView: View {
     @State private var quantity: Int = 5
     @State private var milkType: MilkType = .natural
     @State private var feedingTime: Int = 5
+    
+    private let ref = Database.database().reference(withPath: "feed-history")
     
     @State private var sleepTime: Int = 30
     
@@ -69,10 +71,13 @@ struct RecordView: View {
                         UserDefaults.standard.setValue(encoded, forKey: "milkRecord")
                     }
                     
+                    saveFeedHistory(data: milkRecord)
+                    
                     PersitenceManager.updateWith(favorite: milkRecord, actionType: .add, key: .feed) { error in
                         guard error != nil else {
                             DispatchQueue.main.async {
                                 print("OK!")
+                                
                             }
                             
                             return
@@ -126,6 +131,8 @@ struct RecordView: View {
                         UserDefaults.standard.setValue(encoded, forKey: "milkRecord")
                     }
                     
+                    saveFeedHistory(data: sleepRecord)
+                    
                     PersitenceManager.updateWith(favorite: sleepRecord, actionType: .add, key: .feed) { error in
                         guard error != nil else {
                             DispatchQueue.main.async {
@@ -153,7 +160,7 @@ struct RecordView: View {
                         .padding()
                 }
                 .buttonStyle(.plain)
-            
+                
             case .diaper:
                 
                 HStack {
@@ -162,9 +169,9 @@ struct RecordView: View {
                     } label: {
                         if diaperPee ?? false {
                             Text("소변했음")
-                            .frame(width: 100, height: 100)
-                            .background(.green)
-                            .cornerRadius(12)
+                                .frame(width: 100, height: 100)
+                                .background(.green)
+                                .cornerRadius(12)
                         } else {
                             Text("소변안했음")
                                 .frame(width: 100, height: 100)
@@ -172,15 +179,15 @@ struct RecordView: View {
                                 .cornerRadius(12)
                         }
                     }.buttonStyle(.plain)
-
+                    
                     Button {
                         diaperPoo?.toggle()
                     } label: {
                         if diaperPoo ?? false {
                             Text("대변했음")
-                            .frame(width: 100, height: 100)
-                            .background(.green)
-                            .cornerRadius(12)
+                                .frame(width: 100, height: 100)
+                                .background(.green)
+                                .cornerRadius(12)
                         } else {
                             Text("대변안했음")
                                 .frame(width: 100, height: 100)
@@ -199,8 +206,11 @@ struct RecordView: View {
                 Button {
                     let diaperRecord = MilkRecord(startTime: recordTime,
                                                   startTimeDate: recordTime.formatted("yyyy-MM-dd"),
-                                                 diaperPee: diaperPee,
-                                                 diaperPoo: diaperPoo)
+                                                  diaperPee: diaperPee,
+                                                  diaperPoo: diaperPoo)
+                    
+                    saveFeedHistory(data: diaperRecord)
+                    
                     let encoder = JSONEncoder()
                     if let encoded = try? encoder.encode(diaperRecord) {
                         UserDefaults.standard.setValue(encoded, forKey: "milkRecord")
@@ -233,7 +243,7 @@ struct RecordView: View {
                 }
                 .buttonStyle(.plain)
             case .feeding:
-                Text("총 수유 시간")
+                Text("직수 시간")
                 Picker("먹인 시간", selection: $feedingTime) {
                     ForEach(1...70, id: \.self) { number in
                         Text("\(number)분")
@@ -247,15 +257,18 @@ struct RecordView: View {
                 .datePickerStyle(WheelDatePickerStyle())
                 Spacer()
                 Button {
-                    let diaperRecord = MilkRecord(startTime: recordTime,
+                    let feedingRecord = MilkRecord(startTime: recordTime,
                                                   startTimeDate: recordTime.formatted("yyyy-MM-dd"),
                                                   feedingTime: feedingTime)
+                    
+                    saveFeedHistory(data: feedingRecord)
+                    
                     let encoder = JSONEncoder()
-                    if let encoded = try? encoder.encode(diaperRecord) {
+                    if let encoded = try? encoder.encode(feedingRecord) {
                         UserDefaults.standard.setValue(encoded, forKey: "milkRecord")
                     }
                     
-                    PersitenceManager.updateWith(favorite: diaperRecord, actionType: .add, key: .feed) { error in
+                    PersitenceManager.updateWith(favorite: feedingRecord, actionType: .add, key: .feed) { error in
                         guard error != nil else {
                             DispatchQueue.main.async {
                                 print("OK!")
@@ -286,6 +299,37 @@ struct RecordView: View {
             }
         }
         .padding()
+    }
+    
+    private func saveFeedHistory(data: MilkRecord) {
+        let user = Auth.auth().currentUser
+        if user != nil {
+            let groupCode = UserDefaults.standard.string(forKey: "groupCode") ?? "error"
+            let locationRef = ref.child(groupCode)
+            
+            guard let savedFeedData = UserDefaults.standard.object(forKey: "feed") as? Data else {
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                var feeds = try decoder.decode([MilkRecord].self, from: savedFeedData)
+                feeds.append(data)
+                
+                let date = DateFormatter()
+                date.dateFormat = "yyyy-MM-dd"
+                do {
+                    let jsonData = try JSONEncoder().encode(feeds)
+                    let jsonString = String.init(data: jsonData, encoding: .utf8)
+                    locationRef.setValue(jsonString)
+                } catch {
+                    #warning("에러처리")
+                    print("encoding error")
+                }
+            } catch {
+                
+            }
+        }
     }
 }
 

@@ -16,7 +16,7 @@ struct BreastFeedingView: View {
     var body: some View {
         VStack {
             Form {
-                Section("총 수유 시간") {
+                Section("직수 시간") {
                     Picker("먹인 시간", selection: $feedingTime) {
                         ForEach(1...70, id: \.self) { number in
                             Text("\(number)분")
