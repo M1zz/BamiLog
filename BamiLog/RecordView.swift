@@ -20,7 +20,7 @@ struct RecordView: View {
     
     private let ref = Database.database().reference(withPath: "feed-history")
     
-    @State private var sleepTime: Int = 30
+    @State private var sleepTime: Int = 3
     
     //@State private var recordStopTime = Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
     
@@ -125,7 +125,7 @@ struct RecordView: View {
                 Button {
                     let sleepRecord = MilkRecord(startTime: recordTime,
                                                  startTimeDate: recordTime.formatted("yyyy-MM-dd"),
-                                                 sleepTime: sleepTime)
+                                                 sleepTime: sleepTime*5)
                     let encoder = JSONEncoder()
                     if let encoded = try? encoder.encode(sleepRecord) {
                         UserDefaults.standard.setValue(encoded, forKey: "milkRecord")
