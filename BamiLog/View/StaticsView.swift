@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import FirebaseDatabase
+import FirebaseAuth
 
 struct StaticsView: View {
     @Binding var isTableShow: Bool
     @State var milkDatas: [MilkRecord] = []
     @State var milkKeys: [String] = []
     @State var testMilkDatas: [String?: [MilkRecord]] = [:]
+    
+    private let ref = Database.database().reference(withPath: "feed-history")
+    
     
     var body: some View {
         VStack {
@@ -21,7 +26,12 @@ struct StaticsView: View {
             List {
                 ForEach(milkKeys, id: \.self) { key in
                     Section {
-                        ForEach(testMilkDatas[key]!, id: \.self) { item in
+                        let temp = testMilkDatas[key]!
+                        var temp2 = temp.sorted(by: {
+                            $0.startTime.compare($1.startTime) == .orderedAscending
+                        })
+                        
+                        ForEach(temp2, id: \.self) { item in
                             RecordRowView(item: item)
                         }
                         .onDelete { indexSet in
@@ -30,47 +40,94 @@ struct StaticsView: View {
                             PersitenceManager.deleteWith(records: testMilkDatas, actionType: .add, key: .feed) { error in
                                 print("todo")
                             }
-                            //print(testMilkDatas)
+                            sendDeleteDate(records: testMilkDatas)
+                            
                         }
                     } header: {
                         Text(key)
                     }
                 }
                 
-//                    PersitenceManager.deleteWith(favorite: milkDatas, actionType: .add, key: .feed) { error in
-//
-//                        guard error != nil else {
-//                            DispatchQueue.main.async {
-//                                print("OK!")
-//                            }
-//
-//                            return
-//                        }
-//
-//                        DispatchQueue.main.async {
-//                            //self.presentGFAlert(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
-//                            print("Error")
-//                        }
-//                    }
                 
             }
         }
         .padding()
         
         .onAppear {
-            PersitenceManager.retrieveFavorites(key: .feed) { result in
-                switch result {
-                case .success(let datas):
-                    milkDatas = datas
-                    testMilkDatas = recordByDay(milkrecords: milkDatas)
+            let user = Auth.auth().currentUser
+            if let user = user {
+                let email = user.email ?? "error"
+                let groupCode = UserDefaults.standard.string(forKey: "groupCode") ?? "error"
+                let userItemRef = ref.child(groupCode)
+                
+                userItemRef.observe(.value, with: { snapShot in
+                    guard let snapData = snapShot.value as? String else {
+                        print("??!!")
+                        return
+                        
+                    }
                     
-                    milkKeys = getGroupKeys(milkrecords: milkDatas)
-                    milkKeys = milkKeys.sorted {$0.compare($1, options: .numeric) == .orderedDescending}
-                case .failure(_):
-                    DispatchQueue.main.async {
-                        print("Error")
+                    do {
+                        milkDatas = try! JSONDecoder().decode([MilkRecord].self,
+                                                                  from: snapData.data(using: .utf8)!)
+                        testMilkDatas = recordByDay(milkrecords: milkDatas)
+                        
+                        milkKeys = getGroupKeys(milkrecords: milkDatas)
+                        milkKeys = milkKeys.sorted {$0.compare($1, options: .numeric) == .orderedDescending}
+                        
+                        PersitenceManager.save(favorites: milkDatas, key: .feed)
+                    } catch {
+                        print("encoding error")
+                    }
+                })
+            } else {
+                print("로컬 작동")
+                PersitenceManager.retrieveFavorites(key: .feed) { result in
+                    switch result {
+                    case .success(let datas):
+                        milkDatas = datas
+                        testMilkDatas = recordByDay(milkrecords: milkDatas)
+                        
+                        milkKeys = getGroupKeys(milkrecords: milkDatas)
+                        milkKeys = milkKeys.sorted {$0.compare($1, options: .numeric) == .orderedDescending}
+                    case .failure(_):
+                        DispatchQueue.main.async {
+                            print("Error")
+                        }
                     }
                 }
+            }
+        }
+    }
+
+    private func sendDeleteDate(records: [String? : [MilkRecord]]) {
+        var tempMilkRecord: [MilkRecord] = []
+        
+        for element in records {
+            element.value.forEach { item in
+                tempMilkRecord.append(item)
+            }
+        }
+        
+        let user = Auth.auth().currentUser
+        if user != nil {
+            let groupCode = UserDefaults.standard.string(forKey: "groupCode") ?? "error"
+            let locationRef = ref.child(groupCode)
+            
+           
+            
+            do {
+               
+                do {
+                    let jsonData = try JSONEncoder().encode(tempMilkRecord)
+                    let jsonString = String.init(data: jsonData, encoding: .utf8)
+                    locationRef.setValue(jsonString)
+                } catch {
+                    #warning("에러처리")
+                    print("encoding error")
+                }
+            } catch {
+                
             }
         }
     }

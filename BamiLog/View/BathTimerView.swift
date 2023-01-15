@@ -18,7 +18,7 @@ struct BathTimerView: View {
     @Binding var isBathTimerShow: Bool
     @State var doingBath: Bool = false
     @State var resumeBath: Bool = false
-    @State var profile: Profile?
+    @State var profile: BabyInfomation?
     var countTo: Int = 600
     
     var body: some View {

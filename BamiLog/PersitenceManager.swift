@@ -58,7 +58,6 @@ enum PersitenceManager {
     
     
     static func deleteWith(records: [String? : [MilkRecord]], actionType: PersistenceActionType, key: Keys, completed: @escaping (GFError?) -> Void) {
-        let favorite: MilkRecord! = MilkRecord(startTime: Date())
         var tempMilkRecord: [MilkRecord] = []
         
         for element in records {
@@ -90,6 +89,39 @@ enum PersitenceManager {
         }
     }
     
+//    static func allUpdateWith(records: [String? : [MilkRecord]], actionType: PersistenceActionType, key: Keys, completed: @escaping (GFError?) -> Void) {
+//        let favorite: MilkRecord! = MilkRecord(startTime: Date())
+//        var tempMilkRecord: [MilkRecord] = []
+//        
+//        for element in records {
+//            element.value.forEach { item in
+//                tempMilkRecord.append(item)
+//            }
+//        }
+//
+//        
+//        // print("\(tempMilkRecord) ?? \(tempMilkRecord.count) ")
+//        retrieveFavorites(key: PersitenceManager.Keys(rawValue: key.rawValue) ?? .feed) { result in
+//            switch result {
+//            case .success(var favorites):
+//                
+//                switch actionType {
+//                case .add:
+//                    favorites = tempMilkRecord
+//                    
+//                case .remove:
+//                    print("remove")
+//                    //favorites.removeAll { $0.startTime == favorite.startTime }
+//                }
+//                
+//                completed(save(favorites: favorites, key: key))
+//                
+//            case .failure(let error):
+//                completed(error)
+//            }
+//        }
+//    }
+    
     static func retrieveFavorites(key:Keys, completed: @escaping (Result<[MilkRecord], GFError>) -> Void) {
         guard let favoritesData = defaults.object(forKey: key.rawValue) as? Data else {
             completed(.success([]))
@@ -118,7 +150,7 @@ enum PersitenceManager {
     }
     
     
-    static func saveProfile(profile: Profile, key: Keys) -> GFError? {
+    static func saveProfile(profile: BabyInfomation, key: Keys) -> GFError? {
         do {
             let encoder = JSONEncoder()
             let encodedProfile = try encoder.encode(profile)
@@ -130,7 +162,7 @@ enum PersitenceManager {
     }
     
     
-    static func retrieveProfile(key:Keys, completed: @escaping (Result<Profile, GFError>) -> Void) {
+    static func retrieveProfile(key:Keys, completed: @escaping (Result<BabyInfomation, GFError>) -> Void) {
         guard let profileData = defaults.object(forKey: key.rawValue) as? Data else {
             completed(.failure(.alreadyInFavorites))
             return
@@ -138,7 +170,7 @@ enum PersitenceManager {
         
         do {
             let decoder = JSONDecoder()
-            let profile = try decoder.decode(Profile.self, from: profileData)
+            let profile = try decoder.decode(BabyInfomation.self, from: profileData)
             completed(.success(profile))
         } catch {
             completed(.failure(.unableToFavorite))

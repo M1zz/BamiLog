@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Profile: Codable, Hashable {
+struct BabyInfomation: Codable, Hashable {
     let name: String
     let birthDate: Date
 }
