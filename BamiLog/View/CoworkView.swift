@@ -37,9 +37,10 @@ struct CoworkView: View {
     
     @State var needPresentGroupCode: Bool = false
     
+    @State var showingAlert: Bool = false
     var body: some View {
         VStack {
-            
+            Spacer()
             Button {
                 showQRScanView.toggle()
             } label: {
@@ -52,6 +53,7 @@ struct CoworkView: View {
                     .background(.green)
                     .cornerRadius(14)
             }
+            .padding()
             Button {
                 showQRGeneratorView.toggle()
             } label: {
@@ -64,6 +66,44 @@ struct CoworkView: View {
                     .background(.blue)
                     .cornerRadius(14)
             }
+            .padding()
+            Spacer()
+            
+            if loginStatus {
+                Button {
+                    showingAlert.toggle()
+                    
+                    
+                } label: {
+                    Text("로그아웃")
+                    
+                }
+                .alert("로그아웃 되었습니다.", isPresented: $showingAlert) {
+                    Button("OK", role: .cancel) {
+                        loginStatus = false
+                        UserDefaults.standard.set(false,
+                                                  forKey: "loginStatus")
+                    }
+                }
+                .padding()
+                Button {
+                    showingAlert.toggle()
+                    
+                    
+                } label: {
+                    Text("회원탈퇴")
+                    
+                }
+                .alert("회원탈퇴 되었습니다.", isPresented: $showingAlert) {
+                    Button("OK", role: .cancel) {
+                        loginStatus = false
+                        UserDefaults.standard.set(false,
+                                                  forKey: "loginStatus")
+                    }
+                }
+                .padding()
+            }
+
         }
         .padding()
         .sheet(isPresented: $showQRScanView, content: {
