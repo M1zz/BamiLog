@@ -16,7 +16,7 @@ enum ButtonType {
 
 struct ContentView: View {
     
-    @State var profile: Profile?
+    @State var profile: BabyInfomation?
     
     /// - View 내부에 정의된 상수를 연산 프로퍼티로 변경
     var diff: DateComponents {
@@ -30,174 +30,222 @@ struct ContentView: View {
     @State var isBathTimerShow: Bool = false
     @State var buttonType: ButtonType?
     
+    @State var showLoginPage: Bool = false
+    @AppStorage("loginStatus") var loginStatus = false
+    
     var body: some View {
-        VStack(spacing: 15) {
-            // MARK: Header
-            VStack(alignment: .leading, spacing: 5) {
-                profileView()
-            }
-            .setHorizontalAlign(.leading)
-            
-            /// - 스크롤 되더라도 헤더는 올라가지 않도록 View 분리
-            // MARK: Button Grid
-            // ???: 아이템이 더 추가될 계획이라서 ScrollView일까요?
-            ScrollView(showsIndicators: false) {
-                /// - 기록할 종류에 맞게 버튼위치 조정
-                /// - 1행 수유기록, 2행 청결관련, 3행 수면 및 기록확인
-                Grid(horizontalSpacing: 25, verticalSpacing: 25) {
-                    GridRow {
-                        Button {
-                            buttonType = .milk
-                            isShow.toggle()
+        NavigationStack {
+            VStack(spacing: 15) {
+                // MARK: Header
+                VStack(alignment: .leading, spacing: 5) {
+                    HStack {
+                        profileView()
+                        Spacer()
+                        NavigationLink {
+                            CoworkView(showLoginPage: $showLoginPage)
                         } label: {
-                            Image("feeding bottle")
+                            Image(systemName: "person.circle")
                                 .resizable()
-                                .modifier(CustomButtonLabel(backgroundColor: .yellow, strokeColor: .blue ))
-                            
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
                         }
-                        .sheet(isPresented: $isShow) {
-                            RecordView(buttonType: $buttonType, isShow: $isShow)
-                        }
-                        
-                        Button {
-                            buttonType = .feeding
-                            isShow.toggle()
-                        } label: {
-                            Image("feeding mother")
-                                .resizable()
-                                .modifier(CustomButtonLabel(backgroundColor: .purple, strokeColor: .yellow))
-                        }
-                        .sheet(isPresented: $isShow) {
-                            RecordView(buttonType: $buttonType, isShow: $isShow)
-                        }
-                    }
-                    
-                    GridRow {
-                        Button {
-                            buttonType = .diaper
-                            isShow.toggle()
-                        } label: {
-                            Image("diaper")
-                                .resizable()
-                                .modifier(CustomButtonLabel(backgroundColor: .brown, strokeColor: .pink))
-                        }
-                        .sheet(isPresented: $isShow) {
-                            RecordView(buttonType: $buttonType, isShow: $isShow)
-                        }
-                        
-                        Button {
-                            isBathTimerShow.toggle()
-                        } label: {
-                            Image("bath")
-                                .resizable()
-                                .modifier(CustomButtonLabel(backgroundColor: .blue, strokeColor: .indigo))
-                        }
-                        .sheet(isPresented: $isBathTimerShow) {
-                            BathTimerView(isBathTimerShow: $isBathTimerShow)
-                        }
-                    }
-                    
-                    GridRow {
-                        Button {
-                            buttonType = .sleep
-                            isShow.toggle()
-                        } label: {
-                            Image(systemName: "moon.stars.fill")
-                                .resizable()
-                                .foregroundColor(.yellow)
-                                .modifier(CustomButtonLabel(backgroundColor: .teal, strokeColor: .orange))
-                        }
-                        .sheet(isPresented: $isShow) {
-                            RecordView(buttonType: $buttonType, isShow: $isShow)
-                        }
-                        
-                        Button {
-                            isTableShow.toggle()
-                        } label: {
-                            Image(systemName: "list.bullet.clipboard")
-                                .resizable()
-                                .foregroundColor(.white)
-                                .modifier(CustomButtonLabel(backgroundColor: .green, strokeColor: .pink))
-                        }
-                        .sheet(isPresented: $isTableShow) {
-                            StaticsView(isTableShow: $isTableShow)
-                        }
+
+
                     }
                 }
-            }
-            //            /// - 버튼 혹은 HStack에 무분별하게 달려있던 sheet 메서드를 제거하고 ScrollView에만 적용
-            //            /// - sheet는 내부의 Picker를 조작하다가 실수로 닫을 가능성이 크므로 fullScreenCover로 변경
-            //            .fullScreenCover(isPresented: $isShow) {
-            //                /// - View 내부의 NavigationTitle 및 Toolbar button을 위해 NavigationStack 사용
-            //                NavigationStack{
-            //                    switch buttonType {
-            //                    case .milk:
-            //                        BottleFeedingView()
-            //                    case .feeding:
-            //                        BreastFeedingView()
-            //                    case .diaper:
-            //                        DiaperView()
-            //                    case .sleep:
-            //                        SleepingRecordView()
-            //                    default:
-            //                        Text("Error")
-            //                    }
-            //                }
-            //            }
-            //            .fullScreenCover(isPresented: $isBathTimerShow) {
-            //                BathTimerView(isBathTimerShow: $isBathTimerShow)
-            //            }
-            //            .fullScreenCover(isPresented: $isTableShow) {
-            //                StaticsView(isTableShow: $isTableShow)
-            //            }
-            //            .fullScreenCover(isPresented: $isEnterProfile, onDismiss: {
-            //                if (profile?.name.isEmpty) == nil {
-            //                    PersitenceManager.retrieveProfile(key: .profile) { result in
-            //                        switch result {
-            //                        case .success(let babyProfile):
-            //                            profile = babyProfile
-            //                        case .failure(_):
-            //                            DispatchQueue.main.async {
-            //                                isEnterProfile = true
-            //                                print("Error profile")
-            //                            }
-            //                        }
-            //                    }
-            //                }
-            //            }, content: {
-            //                EnterProfileView(isEnterProfile: $isEnterProfile)
-            //            })
-            .onAppear {
-                if (profile?.name.isEmpty) == nil {
-                    PersitenceManager.retrieveProfile(key: .profile) { result in
-                        switch result {
-                        case .success(let babyProfile):
-                            profile = babyProfile
-                        case .failure(_):
-                            DispatchQueue.main.async {
-                                isEnterProfile = true
-                                print("Error profile")
+                .setHorizontalAlign(.leading)
+                
+                /// - 스크롤 되더라도 헤더는 올라가지 않도록 View 분리
+                // MARK: Button Grid
+                ScrollView(showsIndicators: false) {
+                    /// - 기록할 종류에 맞게 버튼위치 조정
+                    /// - 1행 수유기록, 2행 청결관련, 3행 수면 및 기록확인
+                    Grid(horizontalSpacing: 25, verticalSpacing: 25) {
+                        GridRow {
+                            Button {
+                                buttonType = .milk
+                                isShow.toggle()
+                            } label: {
+                                Image("feeding bottle")
+                                    .resizable()
+                                    .modifier(CustomButtonLabel(backgroundColor: .yellow, strokeColor: .blue ))
+                                
+                            }
+                            .sheet(isPresented: $isShow) {
+                                RecordView(buttonType: $buttonType, isShow: $isShow)
+                            }
+                            
+                            Button {
+                                buttonType = .feeding
+                                isShow.toggle()
+                            } label: {
+                                Image("feeding mother")
+                                    .resizable()
+                                    .modifier(CustomButtonLabel(backgroundColor: .purple, strokeColor: .yellow))
+                            }
+                            .sheet(isPresented: $isShow) {
+                                RecordView(buttonType: $buttonType, isShow: $isShow)
+                            }
+                        }
+                        
+                        GridRow {
+                            Button {
+                                buttonType = .diaper
+                                isShow.toggle()
+                            } label: {
+                                Image("diaper")
+                                    .resizable()
+                                    .modifier(CustomButtonLabel(backgroundColor: .brown, strokeColor: .pink))
+                            }
+                            .sheet(isPresented: $isShow) {
+                                RecordView(buttonType: $buttonType, isShow: $isShow)
+                            }
+                            
+                            Button {
+                                isBathTimerShow.toggle()
+                            } label: {
+                                Image("bath")
+                                    .resizable()
+                                    .modifier(CustomButtonLabel(backgroundColor: .blue, strokeColor: .indigo))
+                            }
+                            .sheet(isPresented: $isBathTimerShow) {
+                                BathTimerView(isBathTimerShow: $isBathTimerShow)
+                            }
+                        }
+                        
+                        GridRow {
+                            Button {
+                                buttonType = .sleep
+                                isShow.toggle()
+                            } label: {
+                                Image(systemName: "moon.stars.fill")
+                                    .resizable()
+                                    .foregroundColor(.yellow)
+                                    .modifier(CustomButtonLabel(backgroundColor: .teal, strokeColor: .orange))
+                            }
+                            .sheet(isPresented: $isShow) {
+                                RecordView(buttonType: $buttonType, isShow: $isShow)
+                            }
+                            
+                            Button {
+                                isTableShow.toggle()
+                            } label: {
+                                Image(systemName: "list.bullet.clipboard")
+                                    .resizable()
+                                    .foregroundColor(.white)
+                                    .modifier(CustomButtonLabel(backgroundColor: .green, strokeColor: .pink))
+                            }
+                            .sheet(isPresented: $isTableShow) {
+                                StaticsView(isTableShow: $isTableShow)
                             }
                         }
                     }
                 }
+                //            /// - 버튼 혹은 HStack에 무분별하게 달려있던 sheet 메서드를 제거하고 ScrollView에만 적용
+                //            /// - sheet는 내부의 Picker를 조작하다가 실수로 닫을 가능성이 크므로 fullScreenCover로 변경
+                //            .fullScreenCover(isPresented: $isShow) {
+                //                /// - View 내부의 NavigationTitle 및 Toolbar button을 위해 NavigationStack 사용
+                //                NavigationStack{
+                //                    switch buttonType {
+                //                    case .milk:
+                //                        BottleFeedingView()
+                //                    case .feeding:
+                //                        BreastFeedingView()
+                //                    case .diaper:
+                //                        DiaperView()
+                //                    case .sleep:
+                //                        SleepingRecordView()
+                //                    default:
+                //                        Text("Error")
+                //                    }
+                //                }
+                //            }
+                //            .fullScreenCover(isPresented: $isBathTimerShow) {
+                //                BathTimerView(isBathTimerShow: $isBathTimerShow)
+                //            }
+                //            .fullScreenCover(isPresented: $isTableShow) {
+                //                StaticsView(isTableShow: $isTableShow)
+                //            }
+                //            .fullScreenCover(isPresented: $isEnterProfile, onDismiss: {
+                //                if (profile?.name.isEmpty) == nil {
+                //                    PersitenceManager.retrieveProfile(key: .profile) { result in
+                //                        switch result {
+                //                        case .success(let babyProfile):
+                //                            profile = babyProfile
+                //                        case .failure(_):
+                //                            DispatchQueue.main.async {
+                //                                isEnterProfile = true
+                //                                print("Error profile")
+                //                            }
+                //                        }
+                //                    }
+                //                }
+                //            }, content: {
+                //                EnterProfileView(isEnterProfile: $isEnterProfile)
+                //            })
+                .sheet(isPresented: $isEnterProfile, onDismiss: {
+                            if (profile?.name.isEmpty) == nil {
+                                PersitenceManager.retrieveProfile(key: .profile) { result in
+                                    switch result {
+                                    case .success(let babyProfile):
+                                        //self.updateUI(with: favorites)
+                                        profile = babyProfile
+                                    case .failure(_):
+                                        DispatchQueue.main.async {
+                                            //self.presentGFAlert(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+                                            isEnterProfile = true
+                                            print("Error profile")
+                                        }
+                                    }
+                                }
+                            }
+                        }, content: {
+                            EnterProfileView(isEnterProfile: $isEnterProfile)
+                        })
+                .onAppear {
+                    if (profile?.name.isEmpty) == nil {
+                        PersitenceManager.retrieveProfile(key: .profile) { result in
+                            switch result {
+                            case .success(let babyProfile):
+                                profile = babyProfile
+                            case .failure(_):
+                                DispatchQueue.main.async {
+                                    isEnterProfile = true
+                                    print("Error profile")
+                                }
+                            }
+                        }
+                    }
+                    
+                    loginStatus = UserDefaults.standard.bool(forKey: "loginStatus")
+                }
             }
+            .padding()
         }
-        .padding()
+        
         
     }
     
     @ViewBuilder
     private func profileView() -> some View {
         if let profile {
-            HStack(alignment: .bottom) {
-                Text("\(profile.name)")
-                    .font(.largeTitle)
-                
-                Text("태어난 지 \(diff.day?.description ?? "0")일째")
-                    .font(.title2)
-                    .foregroundColor(.gray)
-                    .padding(.bottom, 2)
+            VStack {
+                HStack(alignment: .bottom) {
+                    Text("\(profile.name)")
+                        .font(.largeTitle)
+                    
+                    Text("태어난 지 \(diff.day?.description ?? "0")일째")
+                        .font(.title2)
+                        .foregroundColor(.gray)
+                        .padding(.bottom, 2)
+                    Spacer()
+                }
+                HStack {
+                    Text("기적의 100일까지 \((100 - (diff.day ?? 0)).description )일")
+                        .font(.title3)
+                        .foregroundColor(.gray)
+                    Spacer()
+                }
             }
             
         } else {
@@ -231,6 +279,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(profile: Profile(name: "아키", birthDate: Date()), buttonType: .milk)
+        ContentView(profile: BabyInfomation(name: "아키", birthDate: Date()), buttonType: .milk, showLoginPage: false)
     }
 }

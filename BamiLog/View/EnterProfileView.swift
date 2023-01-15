@@ -33,7 +33,7 @@ struct EnterProfileView: View {
                             Text("생일이 언제에요?")
                         }
             Button {
-                let profile = Profile(name: name, birthDate: birthDate)
+                let profile = BabyInfomation(name: name, birthDate: birthDate)
                 let encoder = JSONEncoder()
                 if let encoded = try? encoder.encode(profile) {
                     UserDefaults.standard.setValue(encoded, forKey: "profile")
