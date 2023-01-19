@@ -83,7 +83,7 @@ struct SoundView: View {
                     infinite.toggle()
                     
                     if infinite {
-                        audioPlayer.numberOfLoops = 1
+                        audioPlayer.numberOfLoops = -1
                     } else {
                         audioPlayer.numberOfLoops = 0
                     }
@@ -127,7 +127,7 @@ struct SoundView: View {
                 progress = CGFloat(audioPlayer.currentTime / audioPlayer.duration)
                 formattedProgress = formatter.string(from: TimeInterval(audioPlayer.currentTime))!
             }
-            audioPlayer.numberOfLoops = 1
+            audioPlayer.numberOfLoops = -1
         }
     }
 }
