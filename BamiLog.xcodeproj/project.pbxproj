@@ -45,7 +45,7 @@
 		586F67A729730B2900BB22FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 586F67A629730B2800BB22FB /* GoogleService-Info.plist */; };
 		58B3F3012971A6F6003267DA /* BathTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3F3002971A6F6003267DA /* BathTimerView.swift */; };
 		58F70E0229608996009F5F40 /* BamiLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E0129608996009F5F40 /* BamiLogApp.swift */; };
-		58F70E0429608996009F5F40 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E0329608996009F5F40 /* ContentView.swift */; };
+		58F70E0429608996009F5F40 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E0329608996009F5F40 /* MenuView.swift */; };
 		58F70E0629608998009F5F40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58F70E0529608998009F5F40 /* Assets.xcassets */; };
 		58F70E0929608998009F5F40 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58F70E0829608998009F5F40 /* Preview Assets.xcassets */; };
 		58F70E1329608998009F5F40 /* BamiLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E1229608998009F5F40 /* BamiLogTests.swift */; };
@@ -83,6 +83,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		582C626129791D9B000CDABA /* she.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = she.m4a; sourceTree = "<group>"; };
 		586F678F2972EB9D00BB22FB /* CoworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoworkView.swift; sourceTree = "<group>"; };
 		586F67922972ED5000BB22FB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		586F67942972F5E200BB22FB /* BamiLog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BamiLog.entitlements; sourceTree = "<group>"; };
@@ -96,7 +97,7 @@
 		58B3F3002971A6F6003267DA /* BathTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathTimerView.swift; sourceTree = "<group>"; };
 		58F70DFE29608996009F5F40 /* BamiLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BamiLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58F70E0129608996009F5F40 /* BamiLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BamiLogApp.swift; sourceTree = "<group>"; };
-		58F70E0329608996009F5F40 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		58F70E0329608996009F5F40 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		58F70E0529608998009F5F40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58F70E0829608998009F5F40 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		58F70E0E29608998009F5F40 /* BamiLogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BamiLogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +171,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		582C626029791D91000CDABA /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				582C626129791D9B000CDABA /* she.m4a */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		586F67912972ED4500BB22FB /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +222,7 @@
 		58F70E0029608996009F5F40 /* BamiLog */ = {
 			isa = PBXGroup;
 			children = (
+				582C626029791D91000CDABA /* Resource */,
 				586F67942972F5E200BB22FB /* BamiLog.entitlements */,
 				586F67A629730B2800BB22FB /* GoogleService-Info.plist */,
 				58F70E0129608996009F5F40 /* BamiLogApp.swift */,
@@ -266,7 +276,7 @@
 			children = (
 				586F67952972F99000BB22FB /* QR */,
 				586F67912972ED4500BB22FB /* Login */,
-				58F70E0329608996009F5F40 /* ContentView.swift */,
+				58F70E0329608996009F5F40 /* MenuView.swift */,
 				63946E3C2971FE2000B8139B /* BottleFeedingView.swift */,
 				63946E3E2972066500B8139B /* BreastFeedingView.swift */,
 				63946E4029720A2400B8139B /* DiaperView.swift */,
@@ -452,7 +462,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58F70E0429608996009F5F40 /* ContentView.swift in Sources */,
+				58F70E0429608996009F5F40 /* MenuView.swift in Sources */,
 				58F70E3229610C70009F5F40 /* EnterProfileView.swift in Sources */,
 				63946E4329720D0300B8139B /* SleepingRecordView.swift in Sources */,
 				58F70E2C29608CC5009F5F40 /* RecordView.swift in Sources */,

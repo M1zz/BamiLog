@@ -14,7 +14,7 @@ enum ButtonType {
     case sleep
 }
 
-struct ContentView: View {
+struct MenuView: View {
     
     @State var profile: BabyInfomation?
     
@@ -139,6 +139,8 @@ struct ContentView: View {
                                 StaticsView(isTableShow: $isTableShow)
                             }
                         }
+                        
+                        GridRow {}
                     }
                 }
                 .sheet(isPresented: $isEnterProfile, onDismiss: {
@@ -235,8 +237,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(profile: BabyInfomation(name: "아키", birthDate: Date()), buttonType: .milk, showLoginPage: false)
+        MenuView(profile: BabyInfomation(name: "아키", birthDate: Date()), buttonType: .milk, showLoginPage: false)
     }
 }

@@ -15,7 +15,7 @@ struct BamiLogApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MenuView()
         }
     }
 }
