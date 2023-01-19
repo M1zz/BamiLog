@@ -28,6 +28,7 @@ struct MenuView: View {
     @State var isTableShow: Bool = false
     @State var isEnterProfile: Bool = false
     @State var isBathTimerShow: Bool = false
+    @State var isSoundViewShow: Bool = false
     @State var buttonType: ButtonType?
     
     @State var showLoginPage: Bool = false
@@ -140,7 +141,16 @@ struct MenuView: View {
                             }
                         }
                         
-                        GridRow {}
+                        GridRow {Button {
+                            isSoundViewShow.toggle()
+                        } label: {
+                            Image("melody")
+                                .resizable()
+                                .modifier(CustomButtonLabel(backgroundColor: .white, strokeColor: .gray))
+                        }
+                        .sheet(isPresented: $isSoundViewShow) {
+                            SoundView(isSoundViewShow: $isSoundViewShow)
+                        }}
                     }
                 }
                 .sheet(isPresented: $isEnterProfile, onDismiss: {

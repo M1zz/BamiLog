@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		582C6265297921E8000CDABA /* SoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582C6264297921E8000CDABA /* SoundView.swift */; };
+		582C626729792A7E000CDABA /* she.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 582C626629792A7E000CDABA /* she.m4a */; };
 		586F67582972E95700BB22FB /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 586F67572972E95700BB22FB /* FirebaseAnalytics */; };
 		586F675A2972E95700BB22FB /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 586F67592972E95700BB22FB /* FirebaseAnalyticsOnDeviceConversion */; };
 		586F675C2972E95700BB22FB /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 586F675B2972E95700BB22FB /* FirebaseAnalyticsSwift */; };
@@ -83,7 +85,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		582C626129791D9B000CDABA /* she.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = she.m4a; sourceTree = "<group>"; };
+		582C6264297921E8000CDABA /* SoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundView.swift; sourceTree = "<group>"; };
+		582C626629792A7E000CDABA /* she.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = she.m4a; sourceTree = "<group>"; };
 		586F678F2972EB9D00BB22FB /* CoworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoworkView.swift; sourceTree = "<group>"; };
 		586F67922972ED5000BB22FB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		586F67942972F5E200BB22FB /* BamiLog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BamiLog.entitlements; sourceTree = "<group>"; };
@@ -174,9 +177,24 @@
 		582C626029791D91000CDABA /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				582C626129791D9B000CDABA /* she.m4a */,
+				582C626629792A7E000CDABA /* she.m4a */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		582C62632979218E000CDABA /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				58F70E0329608996009F5F40 /* MenuView.swift */,
+				63946E3C2971FE2000B8139B /* BottleFeedingView.swift */,
+				63946E3E2972066500B8139B /* BreastFeedingView.swift */,
+				63946E4029720A2400B8139B /* DiaperView.swift */,
+				63946E4229720D0300B8139B /* SleepingRecordView.swift */,
+				58B3F3002971A6F6003267DA /* BathTimerView.swift */,
+				58F70E2D2960AA60009F5F40 /* StaticsView.swift */,
+				582C6264297921E8000CDABA /* SoundView.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		586F67912972ED4500BB22FB /* Login */ = {
@@ -274,15 +292,9 @@
 		63946E362971C7E900B8139B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				582C62632979218E000CDABA /* Menu */,
 				586F67952972F99000BB22FB /* QR */,
 				586F67912972ED4500BB22FB /* Login */,
-				58F70E0329608996009F5F40 /* MenuView.swift */,
-				63946E3C2971FE2000B8139B /* BottleFeedingView.swift */,
-				63946E3E2972066500B8139B /* BreastFeedingView.swift */,
-				63946E4029720A2400B8139B /* DiaperView.swift */,
-				63946E4229720D0300B8139B /* SleepingRecordView.swift */,
-				58B3F3002971A6F6003267DA /* BathTimerView.swift */,
-				58F70E2D2960AA60009F5F40 /* StaticsView.swift */,
 				58F70E3129610C70009F5F40 /* EnterProfileView.swift */,
 				586F678F2972EB9D00BB22FB /* CoworkView.swift */,
 			);
@@ -438,6 +450,7 @@
 				58F70E0929608998009F5F40 /* Preview Assets.xcassets in Resources */,
 				58F70E0629608998009F5F40 /* Assets.xcassets in Resources */,
 				586F67A729730B2900BB22FB /* GoogleService-Info.plist in Resources */,
+				582C626729792A7E000CDABA /* she.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +489,7 @@
 				63946E3B2971DB9F00B8139B /* UIScreen+.swift in Sources */,
 				58F70E0229608996009F5F40 /* BamiLogApp.swift in Sources */,
 				586F67932972ED5000BB22FB /* LoginView.swift in Sources */,
+				582C6265297921E8000CDABA /* SoundView.swift in Sources */,
 				586F67A32972FE7700BB22FB /* Date+.swift in Sources */,
 				63946E4129720A2400B8139B /* DiaperView.swift in Sources */,
 				586F67A12972FDFC00BB22FB /* ScannerViewController.swift in Sources */,
