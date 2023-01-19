@@ -14,7 +14,7 @@ enum ButtonType {
     case sleep
 }
 
-struct ContentView: View {
+struct MenuView: View {
     
     @State var profile: BabyInfomation?
     
@@ -28,6 +28,7 @@ struct ContentView: View {
     @State var isTableShow: Bool = false
     @State var isEnterProfile: Bool = false
     @State var isBathTimerShow: Bool = false
+    @State var isSoundViewShow: Bool = false
     @State var buttonType: ButtonType?
     
     @State var showLoginPage: Bool = false
@@ -139,6 +140,17 @@ struct ContentView: View {
                                 StaticsView(isTableShow: $isTableShow)
                             }
                         }
+                        
+                        GridRow {Button {
+                            isSoundViewShow.toggle()
+                        } label: {
+                            Image("melody")
+                                .resizable()
+                                .modifier(CustomButtonLabel(backgroundColor: .white, strokeColor: .gray))
+                        }
+                        .sheet(isPresented: $isSoundViewShow) {
+                            SoundView(isSoundViewShow: $isSoundViewShow)
+                        }}
                     }
                 }
                 .sheet(isPresented: $isEnterProfile, onDismiss: {
@@ -235,8 +247,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(profile: BabyInfomation(name: "아키", birthDate: Date()), buttonType: .milk, showLoginPage: false)
+        MenuView(profile: BabyInfomation(name: "아키", birthDate: Date()), buttonType: .milk, showLoginPage: false)
     }
 }
