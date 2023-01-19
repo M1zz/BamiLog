@@ -118,7 +118,7 @@ struct ContentView: View {
                                 buttonType = .sleep
                                 isShow.toggle()
                             } label: {
-                                Image(systemName: "moon.stars.fill")
+                                Image("sleep")
                                     .resizable()
                                     .foregroundColor(.yellow)
                                     .modifier(CustomButtonLabel(backgroundColor: .teal, strokeColor: .orange))
@@ -130,7 +130,7 @@ struct ContentView: View {
                             Button {
                                 isTableShow.toggle()
                             } label: {
-                                Image(systemName: "list.bullet.clipboard")
+                                Image("history")
                                     .resizable()
                                     .foregroundColor(.white)
                                     .modifier(CustomButtonLabel(backgroundColor: .green, strokeColor: .pink))
@@ -141,48 +141,6 @@ struct ContentView: View {
                         }
                     }
                 }
-                //            /// - 버튼 혹은 HStack에 무분별하게 달려있던 sheet 메서드를 제거하고 ScrollView에만 적용
-                //            /// - sheet는 내부의 Picker를 조작하다가 실수로 닫을 가능성이 크므로 fullScreenCover로 변경
-                //            .fullScreenCover(isPresented: $isShow) {
-                //                /// - View 내부의 NavigationTitle 및 Toolbar button을 위해 NavigationStack 사용
-                //                NavigationStack{
-                //                    switch buttonType {
-                //                    case .milk:
-                //                        BottleFeedingView()
-                //                    case .feeding:
-                //                        BreastFeedingView()
-                //                    case .diaper:
-                //                        DiaperView()
-                //                    case .sleep:
-                //                        SleepingRecordView()
-                //                    default:
-                //                        Text("Error")
-                //                    }
-                //                }
-                //            }
-                //            .fullScreenCover(isPresented: $isBathTimerShow) {
-                //                BathTimerView(isBathTimerShow: $isBathTimerShow)
-                //            }
-                //            .fullScreenCover(isPresented: $isTableShow) {
-                //                StaticsView(isTableShow: $isTableShow)
-                //            }
-                //            .fullScreenCover(isPresented: $isEnterProfile, onDismiss: {
-                //                if (profile?.name.isEmpty) == nil {
-                //                    PersitenceManager.retrieveProfile(key: .profile) { result in
-                //                        switch result {
-                //                        case .success(let babyProfile):
-                //                            profile = babyProfile
-                //                        case .failure(_):
-                //                            DispatchQueue.main.async {
-                //                                isEnterProfile = true
-                //                                print("Error profile")
-                //                            }
-                //                        }
-                //                    }
-                //                }
-                //            }, content: {
-                //                EnterProfileView(isEnterProfile: $isEnterProfile)
-                //            })
                 .sheet(isPresented: $isEnterProfile, onDismiss: {
                             if (profile?.name.isEmpty) == nil {
                                 PersitenceManager.retrieveProfile(key: .profile) { result in

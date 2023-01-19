@@ -251,14 +251,15 @@ struct RecordView: View {
                 }
                 .pickerStyle(.wheel)
                 
-                Text("시간을 선택해주세요")
+                Text("끝난 시간을 선택해주세요")
                 DatePicker("",
                            selection: $recordTime)
                 .datePickerStyle(WheelDatePickerStyle())
                 Spacer()
                 Button {
-                    let feedingRecord = MilkRecord(startTime: recordTime,
-                                                  startTimeDate: recordTime.formatted("yyyy-MM-dd"),
+                    
+                    let feedingRecord = MilkRecord(startTime: recordTime.adding(minutes: feedingTime),
+                                                  startTimeDate: recordTime.adding(minutes: feedingTime).formatted("yyyy-MM-dd"),
                                                   feedingTime: feedingTime)
                     
                     saveFeedHistory(data: feedingRecord)
@@ -347,5 +348,11 @@ extension Date {
         formatter.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
         
         return formatter.string(from: self)
+    }
+}
+
+extension Date {
+    func adding(minutes: Int) -> Date {
+        Calendar.current.date(byAdding: .minute, value: -minutes, to: self)!
     }
 }
