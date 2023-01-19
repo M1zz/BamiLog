@@ -23,17 +23,17 @@ struct StaticsView: View {
             HStack {
                 CloseView()
             }
+            if milkKeys == [] {
+                Text("데이터가 없습니다.")
+            }
             List {
                 ForEach(milkKeys, id: \.self) { key in
                     Section {
-                        let temp = testMilkDatas[key]!
-                        var temp2 = temp.sorted(by: {
-                            $0.startTime.compare($1.startTime) == .orderedAscending
-                        })
                         
-                        ForEach(temp2, id: \.self) { item in
+                        ForEach(testMilkDatas[key]!, id: \.self) { item in
                             RecordRowView(item: item)
                         }
+                        
                         .onDelete { indexSet in
                             //print(testMilkDatas.count)
                             testMilkDatas[key]!.remove(atOffsets: indexSet)
@@ -46,9 +46,12 @@ struct StaticsView: View {
                     } header: {
                         Text(key)
                     }
+                    .onAppear {
+                        testMilkDatas[key] = testMilkDatas[key]!.sorted(by: {
+                            $0.startTime.compare($1.startTime) == .orderedDescending
+                        })
+                    }
                 }
-                
-                
             }
         }
         .padding()
