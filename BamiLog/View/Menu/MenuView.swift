@@ -148,9 +148,13 @@ struct MenuView: View {
                                 .resizable()
                                 .modifier(CustomButtonLabel(backgroundColor: .white, strokeColor: .gray))
                         }
-                        .sheet(isPresented: $isSoundViewShow) {
+                        .fullScreenCover(isPresented: $isSoundViewShow, content: {
                             SoundView(isSoundViewShow: $isSoundViewShow)
-                        }}
+                        })
+//                        .sheet(isPresented: $isSoundViewShow) {
+//                            SoundView(isSoundViewShow: $isSoundViewShow)
+//                        }
+                        }
                     }
                 }
                 .sheet(isPresented: $isEnterProfile, onDismiss: {

@@ -45,6 +45,8 @@
 		586F67A12972FDFC00BB22FB /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586F67A02972FDFC00BB22FB /* ScannerViewController.swift */; };
 		586F67A32972FE7700BB22FB /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586F67A22972FE7700BB22FB /* Date+.swift */; };
 		586F67A729730B2900BB22FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 586F67A629730B2800BB22FB /* GoogleService-Info.plist */; };
+		5889C7B429A50DD000DEAC77 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5889C7B329A50DD000DEAC77 /* AudioManager.swift */; };
+		5889C7BA29A52DFA00DEAC77 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5889C7B929A52DFA00DEAC77 /* AudioManager.swift */; };
 		58B3F3012971A6F6003267DA /* BathTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3F3002971A6F6003267DA /* BathTimerView.swift */; };
 		58F70E0229608996009F5F40 /* BamiLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E0129608996009F5F40 /* BamiLogApp.swift */; };
 		58F70E0429608996009F5F40 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F70E0329608996009F5F40 /* MenuView.swift */; };
@@ -97,6 +99,9 @@
 		586F67A02972FDFC00BB22FB /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		586F67A22972FE7700BB22FB /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		586F67A629730B2800BB22FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5889C7B229A5067A00DEAC77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5889C7B329A50DD000DEAC77 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioManager.swift; path = ../../../../../Desktop/AudioManager.swift; sourceTree = "<group>"; };
+		5889C7B929A52DFA00DEAC77 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		58B3F3002971A6F6003267DA /* BathTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathTimerView.swift; sourceTree = "<group>"; };
 		58F70DFE29608996009F5F40 /* BamiLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BamiLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58F70E0129608996009F5F40 /* BamiLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BamiLogApp.swift; sourceTree = "<group>"; };
@@ -240,10 +245,12 @@
 		58F70E0029608996009F5F40 /* BamiLog */ = {
 			isa = PBXGroup;
 			children = (
+				5889C7B229A5067A00DEAC77 /* Info.plist */,
 				582C626029791D91000CDABA /* Resource */,
 				586F67942972F5E200BB22FB /* BamiLog.entitlements */,
 				586F67A629730B2800BB22FB /* GoogleService-Info.plist */,
 				58F70E0129608996009F5F40 /* BamiLogApp.swift */,
+				5889C7B929A52DFA00DEAC77 /* AudioManager.swift */,
 				63946E372971CCD000B8139B /* Extension */,
 				63946E312971BF0F00B8139B /* Model */,
 				63946E362971C7E900B8139B /* View */,
@@ -251,6 +258,7 @@
 				58F70E2F2960AC59009F5F40 /* PersitenceManager.swift */,
 				58F70E0529608998009F5F40 /* Assets.xcassets */,
 				58F70E0729608998009F5F40 /* Preview Content */,
+				5889C7B329A50DD000DEAC77 /* AudioManager.swift */,
 			);
 			path = BamiLog;
 			sourceTree = "<group>";
@@ -487,12 +495,14 @@
 				63946E3D2971FE2000B8139B /* BottleFeedingView.swift in Sources */,
 				58F70E302960AC59009F5F40 /* PersitenceManager.swift in Sources */,
 				63946E3B2971DB9F00B8139B /* UIScreen+.swift in Sources */,
+				5889C7BA29A52DFA00DEAC77 /* AudioManager.swift in Sources */,
 				58F70E0229608996009F5F40 /* BamiLogApp.swift in Sources */,
 				586F67932972ED5000BB22FB /* LoginView.swift in Sources */,
 				582C6265297921E8000CDABA /* SoundView.swift in Sources */,
 				586F67A32972FE7700BB22FB /* Date+.swift in Sources */,
 				63946E4129720A2400B8139B /* DiaperView.swift in Sources */,
 				586F67A12972FDFC00BB22FB /* ScannerViewController.swift in Sources */,
+				5889C7B429A50DD000DEAC77 /* AudioManager.swift in Sources */,
 				586F67902972EB9D00BB22FB /* CoworkView.swift in Sources */,
 				63946E352971BFAF00B8139B /* BabyInfomation.swift in Sources */,
 				63946E3F2972066500B8139B /* BreastFeedingView.swift in Sources */,
@@ -661,6 +671,7 @@
 				DEVELOPMENT_TEAM = QGAQ3AY3R3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BamiLog/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "바미로그";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need to use the camera to scan barcodes.";
@@ -697,6 +708,7 @@
 				DEVELOPMENT_TEAM = QGAQ3AY3R3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BamiLog/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "바미로그";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need to use the camera to scan barcodes.";

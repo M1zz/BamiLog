@@ -13,7 +13,7 @@ struct SoundView: View {
     @State var audioPlayer: AVAudioPlayer!
     
     @State var progress: CGFloat = 0.0
-    @State private var playing: Bool = false
+    @State private var playing: Bool = true
     @State private var infinite: Bool = true
     @State var duration: Double = 0.0
     @State var formattedDuration: String = ""
@@ -83,9 +83,9 @@ struct SoundView: View {
                     infinite.toggle()
                     
                     if infinite {
-                        audioPlayer.numberOfLoops = -1
+                        AudioManager.shared.player?.numberOfLoops = -1
                     } else {
-                        audioPlayer.numberOfLoops = 0
+                        AudioManager.shared.player?.numberOfLoops = 0
                     }
                     
                 }) {
@@ -111,8 +111,11 @@ struct SoundView: View {
             formatter.zeroFormattingBehavior = [ .pad ]
             
             // init audioPlayer
-            let path = Bundle.main.path(forResource: "she", ofType: "m4a")!
-            audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            //let path = Bundle.main.path(forResource: "she", ofType: "m4a")!
+            AudioManager.shared.startPlayer(track: "she")
+            AudioManager.shared.setupRemoteCommandCenter()
+            AudioManager.shared.setupRemoteCommandInfoCenter(track: "she")
+            audioPlayer = AudioManager.shared.player
             audioPlayer.prepareToPlay()
             
             
