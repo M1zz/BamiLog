@@ -61,16 +61,16 @@
 		9C4BC3A72EC7A0F000653C6D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9C4BC3A62EC7A0F000653C6D /* FirebaseStorage */; };
 		9C4BC3A92EC7A0F000653C6D /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 9C4BC3A82EC7A0F000653C6D /* FirebaseStorageCombine-Community */; };
 		9C4BC3AB2EC93FA100653C6D /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C4BC3AA2EC93FA100653C6D /* Asset.xcassets */; };
-		9CAB49DD2EC757C600EB00E1 /* BreathGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB49D22EC757C600EB00E1 /* BreathGuideView.swift */; };
-		9CAB49DE2EC757C600EB00E1 /* ContractionHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB49D42EC757C600EB00E1 /* ContractionHistoryView.swift */; };
-		9CAB49DF2EC757C600EB00E1 /* ContractionTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB49D62EC757C600EB00E1 /* ContractionTrackerView.swift */; };
-		9CAB49E12EC757C600EB00E1 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB49D92EC757C600EB00E1 /* LogView.swift */; };
+		9C4BC3B12EC9F26300653C6D /* ContractionTrackingPhaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4BC3B02EC9F26200653C6D /* ContractionTrackingPhaseView.swift */; };
+		9C4BC3B32EC9F27700653C6D /* BreathingGuidePhaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4BC3B22EC9F27500653C6D /* BreathingGuidePhaseView.swift */; };
+		9C4BC3B52EC9F28900653C6D /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4BC3B42EC9F28800653C6D /* LogView.swift */; };
+		9C4BC3B72EC9F29900653C6D /* ContractionTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4BC3B62EC9F29800653C6D /* ContractionTrackerView.swift */; };
+		9C4BC3B92EC9F2A800653C6D /* BreathGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4BC3B82EC9F2A700653C6D /* BreathGuideView.swift */; };
+		9C4BC3BB2EC9F2B600653C6D /* ContractionHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4BC3BA2EC9F2B500653C6D /* ContractionHistoryView.swift */; };
+		9C4BC3BD2EC9F2CB00653C6D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4BC3BC2EC9F2CA00653C6D /* SettingsView.swift */; };
 		9CAB49E22EC757C600EB00E1 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB49DA2EC757C600EB00E1 /* MainTabView.swift */; };
-		9CAB49E32EC757C600EB00E1 /* ContractionTrackingPhaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB49D72EC757C600EB00E1 /* ContractionTrackingPhaseView.swift */; };
 		9CAB49E42EC757C600EB00E1 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB49D02EC757C600EB00E1 /* AppState.swift */; };
-		9CAB49E52EC757C600EB00E1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB49DC2EC757C600EB00E1 /* SettingsView.swift */; };
 		9CAB49E62EC757C600EB00E1 /* ContractionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB49D52EC757C600EB00E1 /* ContractionManager.swift */; };
-		9CAB49E72EC757C600EB00E1 /* BreathingGuidePhaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB49D32EC757C600EB00E1 /* BreathingGuidePhaseView.swift */; };
 		9CAB49E82EC757C600EB00E1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB49DB2EC757C600EB00E1 /* MainView.swift */; };
 		B29716163A304D23B9EB3FDB /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECE56CD546A42F484C863A /* DesignSystem.swift */; };
 /* End PBXBuildFile section */
@@ -110,17 +110,17 @@
 		63946E4229720D0300B8139B /* SleepingRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepingRecordView.swift; sourceTree = "<group>"; };
 		65386137386463622D656262392D343966662D396333322D /* AppIconManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppIconManager.swift; path = ../Imported/Managers/AppIconManager.swift; sourceTree = "<group>"; };
 		9C4BC3AA2EC93FA100653C6D /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
+		9C4BC3B02EC9F26200653C6D /* ContractionTrackingPhaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractionTrackingPhaseView.swift; sourceTree = "<group>"; };
+		9C4BC3B22EC9F27500653C6D /* BreathingGuidePhaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingGuidePhaseView.swift; sourceTree = "<group>"; };
+		9C4BC3B42EC9F28800653C6D /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
+		9C4BC3B62EC9F29800653C6D /* ContractionTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractionTrackerView.swift; sourceTree = "<group>"; };
+		9C4BC3B82EC9F2A700653C6D /* BreathGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathGuideView.swift; sourceTree = "<group>"; };
+		9C4BC3BA2EC9F2B500653C6D /* ContractionHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractionHistoryView.swift; sourceTree = "<group>"; };
+		9C4BC3BC2EC9F2CA00653C6D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9CAB49D02EC757C600EB00E1 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = ../Imported/Models/AppState.swift; sourceTree = "<group>"; };
-		9CAB49D22EC757C600EB00E1 /* BreathGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BreathGuideView.swift; path = ../../Imported/Views/Components/BreathGuideView.swift; sourceTree = "<group>"; };
-		9CAB49D32EC757C600EB00E1 /* BreathingGuidePhaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BreathingGuidePhaseView.swift; path = ../../Imported/Views/Phases/BreathingGuidePhaseView.swift; sourceTree = "<group>"; };
-		9CAB49D42EC757C600EB00E1 /* ContractionHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContractionHistoryView.swift; path = ../../Imported/Views/Components/ContractionHistoryView.swift; sourceTree = "<group>"; };
 		9CAB49D52EC757C600EB00E1 /* ContractionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContractionManager.swift; path = ../Imported/Managers/ContractionManager.swift; sourceTree = "<group>"; };
-		9CAB49D62EC757C600EB00E1 /* ContractionTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContractionTrackerView.swift; path = ../../Imported/Views/Components/ContractionTrackerView.swift; sourceTree = "<group>"; };
-		9CAB49D72EC757C600EB00E1 /* ContractionTrackingPhaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContractionTrackingPhaseView.swift; path = ../../Imported/Views/Phases/ContractionTrackingPhaseView.swift; sourceTree = "<group>"; };
-		9CAB49D92EC757C600EB00E1 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogView.swift; path = ../../Imported/Views/Components/LogView.swift; sourceTree = "<group>"; };
 		9CAB49DA2EC757C600EB00E1 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabView.swift; path = ../Imported/Views/MainTabView.swift; sourceTree = "<group>"; };
 		9CAB49DB2EC757C600EB00E1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = ../Imported/Views/MainView.swift; sourceTree = "<group>"; };
-		9CAB49DC2EC757C600EB00E1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = ../../Imported/Views/Settings/SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,7 +285,7 @@
 		9C4BC3AC2EC9404F00653C6D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				9CAB49DC2EC757C600EB00E1 /* SettingsView.swift */,
+				9C4BC3BC2EC9F2CA00653C6D /* SettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -293,10 +293,10 @@
 		9C4BC3AD2EC9406600653C6D /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				9CAB49D92EC757C600EB00E1 /* LogView.swift */,
-				9CAB49D62EC757C600EB00E1 /* ContractionTrackerView.swift */,
-				9CAB49D22EC757C600EB00E1 /* BreathGuideView.swift */,
-				9CAB49D42EC757C600EB00E1 /* ContractionHistoryView.swift */,
+				9C4BC3BA2EC9F2B500653C6D /* ContractionHistoryView.swift */,
+				9C4BC3B82EC9F2A700653C6D /* BreathGuideView.swift */,
+				9C4BC3B62EC9F29800653C6D /* ContractionTrackerView.swift */,
+				9C4BC3B42EC9F28800653C6D /* LogView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -304,8 +304,8 @@
 		9C4BC3AE2EC9408200653C6D /* Phases */ = {
 			isa = PBXGroup;
 			children = (
-				9CAB49D72EC757C600EB00E1 /* ContractionTrackingPhaseView.swift */,
-				9CAB49D32EC757C600EB00E1 /* BreathingGuidePhaseView.swift */,
+				9C4BC3B22EC9F27500653C6D /* BreathingGuidePhaseView.swift */,
+				9C4BC3B02EC9F26200653C6D /* ContractionTrackingPhaseView.swift */,
 			);
 			path = Phases;
 			sourceTree = "<group>";
@@ -426,27 +426,26 @@
 				58F70E0429608996009F5F40 /* MenuView.swift in Sources */,
 				58F70E3229610C70009F5F40 /* EnterProfileView.swift in Sources */,
 				63946E4329720D0300B8139B /* SleepingRecordView.swift in Sources */,
+				9C4BC3BB2EC9F2B600653C6D /* ContractionHistoryView.swift in Sources */,
 				58F70E2C29608CC5009F5F40 /* RecordView.swift in Sources */,
 				586F67992972FC5B00BB22FB /* QRCodeScanView.swift in Sources */,
 				58F70E2E2960AA60009F5F40 /* StaticsView.swift in Sources */,
+				9C4BC3B52EC9F28900653C6D /* LogView.swift in Sources */,
 				586F679D2972FD7300BB22FB /* AlertItem.swift in Sources */,
 				58B3F3012971A6F6003267DA /* BathTimerView.swift in Sources */,
+				9C4BC3B12EC9F26300653C6D /* ContractionTrackingPhaseView.swift in Sources */,
+				9C4BC3BD2EC9F2CB00653C6D /* SettingsView.swift in Sources */,
 				586F679F2972FDC500BB22FB /* ScannerView.swift in Sources */,
 				63946E3D2971FE2000B8139B /* BottleFeedingView.swift in Sources */,
 				58F70E302960AC59009F5F40 /* PersitenceManager.swift in Sources */,
-				9CAB49DD2EC757C600EB00E1 /* BreathGuideView.swift in Sources */,
-				9CAB49DE2EC757C600EB00E1 /* ContractionHistoryView.swift in Sources */,
-				9CAB49DF2EC757C600EB00E1 /* ContractionTrackerView.swift in Sources */,
-				9CAB49E12EC757C600EB00E1 /* LogView.swift in Sources */,
+				9C4BC3B72EC9F29900653C6D /* ContractionTrackerView.swift in Sources */,
 				9CAB49E22EC757C600EB00E1 /* MainTabView.swift in Sources */,
-				9CAB49E32EC757C600EB00E1 /* ContractionTrackingPhaseView.swift in Sources */,
 				9CAB49E42EC757C600EB00E1 /* AppState.swift in Sources */,
 				B29716163A304D23B9EB3FDB /* DesignSystem.swift in Sources */,
-				9CAB49E52EC757C600EB00E1 /* SettingsView.swift in Sources */,
 				9CAB49E62EC757C600EB00E1 /* ContractionManager.swift in Sources */,
-				9CAB49E72EC757C600EB00E1 /* BreathingGuidePhaseView.swift in Sources */,
 				9CAB49E82EC757C600EB00E1 /* MainView.swift in Sources */,
 				63946E3B2971DB9F00B8139B /* UIScreen+.swift in Sources */,
+				9C4BC3B32EC9F27700653C6D /* BreathingGuidePhaseView.swift in Sources */,
 				5889C7BA29A52DFA00DEAC77 /* AudioManager.swift in Sources */,
 				58F70E0229608996009F5F40 /* BamiLogApp.swift in Sources */,
 				586F67932972ED5000BB22FB /* LoginView.swift in Sources */,
@@ -459,6 +458,7 @@
 				63946E3F2972066500B8139B /* BreastFeedingView.swift in Sources */,
 				586F679B2972FD3B00BB22FB /* QRGeneratorView.swift in Sources */,
 				63946E392971CCFB00B8139B /* View+.swift in Sources */,
+				9C4BC3B92EC9F2A800653C6D /* BreathGuideView.swift in Sources */,
 				63946E332971BF2700B8139B /* MilkRecord.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

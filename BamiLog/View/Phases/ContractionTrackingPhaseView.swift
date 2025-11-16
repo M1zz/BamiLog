@@ -1,8 +1,8 @@
 //
 //  ContractionTrackingPhaseView.swift
-//  laborBreath
+//  BamiLog
 //
-//  Created by Claude on 11/14/24.
+//  Created by Leeo on 11/16/25.
 //
 
 import SwiftUI
