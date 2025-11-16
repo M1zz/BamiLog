@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AuthenticationServices
+import FirebaseAuth
 
 struct LoginView: View {
     @AppStorage("loginStatus") var loginStatus = false
@@ -144,8 +145,11 @@ class LoginViewModel: ObservableObject {
             return
         }
         
-        let firebaseCredential = OAuthProvider.credential(withProviderID: "apple.com",
-                                                          idToken: tokenString,rawNonce: nonce)
+        let firebaseCredential = OAuthProvider.credential(
+            providerID: AuthProviderID.apple,
+            idToken: tokenString,
+            rawNonce: nonce
+        )
         
         Auth.auth().signIn(with: firebaseCredential) { (result, err) in
             

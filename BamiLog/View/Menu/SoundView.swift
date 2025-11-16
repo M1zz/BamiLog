@@ -3,135 +3,199 @@
 //  BamiLog
 //
 //  Created by hyunho lee on 2023/01/19.
+//  Updated with modern design system
 //
 
 import SwiftUI
+import AVFoundation
 
 struct SoundView: View {
-    
     @Binding var isSoundViewShow: Bool
     @State var audioPlayer: AVAudioPlayer!
-    
+
     @State var progress: CGFloat = 0.0
     @State private var playing: Bool = true
     @State private var infinite: Bool = true
     @State var duration: Double = 0.0
     @State var formattedDuration: String = ""
     @State var formattedProgress: String = "00:00"
-    
+
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                Button {
-                    isSoundViewShow = false
-                    audioPlayer.stop()
-                } label: {
-                    Image(systemName: "x.square")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                }
-            }
-            .padding()
-            
-            
-            
-            HStack {
-                Text(formattedProgress)
-                    .font(.caption.monospacedDigit())
-                
-                // this is a dynamic length progress bar
-                GeometryReader { gr in
-                    Capsule()
-                        .stroke(Color.blue, lineWidth: 2)
-                        .background(
-                            Capsule()
-                                .foregroundColor(Color.blue)
-                                .frame(width: gr.size.width * progress,
-                                       height: 8), alignment: .leading)
-                }
-                .frame( height: 8)
-                
-                Text(formattedDuration)
-                    .font(.caption.monospacedDigit())
-            }
-            
-            Spacer()
-            
-            HStack(alignment: .center, spacing: 20) {
-                
-                Spacer()
-                
-                
-                Button(action: {
-                    if audioPlayer.isPlaying {
-                        playing = false
-                        audioPlayer.pause()
-                    } else if !audioPlayer.isPlaying {
-                        playing = true
-                        audioPlayer.play()
+        NavigationView {
+            ZStack {
+                // 배경 그라데이션
+                LinearGradient(
+                    colors: [
+                        Color(red: 0.8, green: 0.7, blue: 0.9),
+                        Color(red: 0.7, green: 0.6, blue: 0.8)
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
+
+                VStack(spacing: AppSpacing.xxl) {
+                    Spacer()
+
+                    // 음악 아이콘
+                    VStack(spacing: AppSpacing.lg) {
+                        ZStack {
+                            Circle()
+                                .fill(Color.white.opacity(0.2))
+                                .frame(width: 180, height: 180)
+
+                            Circle()
+                                .fill(Color.white.opacity(0.3))
+                                .frame(width: 150, height: 150)
+
+                            Image(systemName: "music.note")
+                                .font(.system(size: 70, weight: .light))
+                                .foregroundColor(.white)
+                        }
+                        .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 10)
+
+                        Text("자장가")
+                            .font(.system(size: 32, weight: .bold))
+                            .foregroundColor(.white)
                     }
-                }) {
-                    Image(systemName: playing ?
-                          "pause.rectangle" : "play.rectangle")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 150, height: 150)
-                }
-                
-                Button(action: {
-                    infinite.toggle()
-                    
-                    if infinite {
-                        AudioManager.shared.player?.numberOfLoops = -1
-                    } else {
-                        AudioManager.shared.player?.numberOfLoops = 0
+
+                    Spacer()
+
+                    // 프로그레스 바
+                    VStack(spacing: AppSpacing.md) {
+                        HStack {
+                            Text(formattedProgress)
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundColor(.white.opacity(0.8))
+                                .monospacedDigit()
+
+                            Spacer()
+
+                            Text(formattedDuration)
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundColor(.white.opacity(0.8))
+                                .monospacedDigit()
+                        }
+
+                        GeometryReader { geometry in
+                            ZStack(alignment: .leading) {
+                                // 배경
+                                Capsule()
+                                    .fill(Color.white.opacity(0.3))
+                                    .frame(height: 6)
+
+                                // 진행 바
+                                Capsule()
+                                    .fill(Color.white)
+                                    .frame(width: geometry.size.width * progress, height: 6)
+                            }
+                        }
+                        .frame(height: 6)
                     }
-                    
-                }) {
-                    Image(systemName: infinite ?
-                          "repeat.circle" : "repeat.1.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 150, height: 150)
+                    .padding(.horizontal, AppSpacing.lg)
+
+                    Spacer()
+
+                    // 컨트롤 버튼
+                    HStack(spacing: 60) {
+                        // 재생/일시정지 버튼
+                        Button(action: {
+                            if audioPlayer.isPlaying {
+                                playing = false
+                                audioPlayer.pause()
+                            } else {
+                                playing = true
+                                audioPlayer.play()
+                            }
+                        }) {
+                            ZStack {
+                                Circle()
+                                    .fill(Color.white)
+                                    .frame(width: 80, height: 80)
+                                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
+
+                                Image(systemName: playing ? "pause.fill" : "play.fill")
+                                    .font(.system(size: 35, weight: .bold))
+                                    .foregroundColor(Color(red: 0.8, green: 0.7, blue: 0.9))
+                            }
+                        }
+
+                        // 반복 버튼
+                        Button(action: {
+                            infinite.toggle()
+
+                            if infinite {
+                                AudioManager.shared.player?.numberOfLoops = -1
+                            } else {
+                                AudioManager.shared.player?.numberOfLoops = 0
+                            }
+                        }) {
+                            ZStack {
+                                Circle()
+                                    .fill(infinite ? Color.white : Color.white.opacity(0.3))
+                                    .frame(width: 60, height: 60)
+                                    .shadow(color: Color.black.opacity(infinite ? 0.2 : 0.1), radius: 8, x: 0, y: 4)
+
+                                Image(systemName: infinite ? "repeat" : "repeat.1")
+                                    .font(.system(size: 22, weight: .semibold))
+                                    .foregroundColor(infinite ? Color(red: 0.8, green: 0.7, blue: 0.9) : .white)
+                            }
+                        }
+                    }
+
+                    Spacer()
                 }
-                
-                Spacer()
+                .padding(.vertical, AppSpacing.xxl)
             }
-            Spacer()
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        isSoundViewShow = false
+                        audioPlayer?.stop()
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 28))
+                            .foregroundColor(.white.opacity(0.9))
+                    }
+                }
+            }
         }
-        .padding()
         .onDisappear {
-            audioPlayer.stop()
+            audioPlayer?.stop()
         }
         .onAppear {
-            let formatter = DateComponentsFormatter()
-            formatter.allowedUnits = [.minute, .second]
-            formatter.unitsStyle = .positional
-            formatter.zeroFormattingBehavior = [ .pad ]
-            
-            // init audioPlayer
-            //let path = Bundle.main.path(forResource: "she", ofType: "m4a")!
-            AudioManager.shared.startPlayer(track: "she")
-            AudioManager.shared.setupRemoteCommandCenter()
-            AudioManager.shared.setupRemoteCommandInfoCenter(track: "she")
-            audioPlayer = AudioManager.shared.player
-            audioPlayer.prepareToPlay()
-            
-            
-            //I need both! The formattedDuration is the string to display and duration is used when forwarding
-            formattedDuration = formatter.string(from: TimeInterval(audioPlayer.duration))!
-            duration = audioPlayer.duration
-            
-            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                if !audioPlayer.isPlaying {
-                    playing = false
-                }
-                progress = CGFloat(audioPlayer.currentTime / audioPlayer.duration)
-                formattedProgress = formatter.string(from: TimeInterval(audioPlayer.currentTime))!
-            }
-            audioPlayer.numberOfLoops = -1
+            setupAudioPlayer()
         }
+    }
+
+    private func setupAudioPlayer() {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.minute, .second]
+        formatter.unitsStyle = .positional
+        formatter.zeroFormattingBehavior = [.pad]
+
+        // AudioPlayer 초기화
+        AudioManager.shared.startPlayer(track: "she")
+        AudioManager.shared.setupRemoteCommandCenter()
+        AudioManager.shared.setupRemoteCommandInfoCenter(track: "she")
+        audioPlayer = AudioManager.shared.player
+        audioPlayer.prepareToPlay()
+
+        // 시간 포맷팅
+        formattedDuration = formatter.string(from: TimeInterval(audioPlayer.duration)) ?? "00:00"
+        duration = audioPlayer.duration
+
+        // 타이머 시작
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            if !audioPlayer.isPlaying {
+                playing = false
+            }
+            progress = CGFloat(audioPlayer.currentTime / audioPlayer.duration)
+            formattedProgress = formatter.string(from: TimeInterval(audioPlayer.currentTime)) ?? "00:00"
+        }
+
+        audioPlayer.numberOfLoops = -1
     }
 }
 
@@ -140,5 +204,3 @@ struct SoundView_Previews: PreviewProvider {
         SoundView(isSoundViewShow: .constant(true))
     }
 }
-
-import AVKit
