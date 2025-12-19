@@ -15,8 +15,8 @@ struct ContractionHistoryView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                // 배경 - 다크/라이트 모드 대응
-                AppColors.background
+                // 배경 - 회색
+                Color(red: 0.95, green: 0.95, blue: 0.95)
                     .ignoresSafeArea()
 
                 if contractionManager.contractions.isEmpty {
@@ -64,7 +64,7 @@ struct ContractionHistoryView: View {
                                         .foregroundColor(contractionManager.currentStage.color)
                                 }
                             }
-                            .listRowBackground(AppColors.cardBackground)
+                            .listRowBackground(Color.white)
                         }
 
                         // 진통 목록
@@ -75,11 +75,17 @@ struct ContractionHistoryView: View {
                                     previousContraction: index < contractionManager.contractions.count - 1 ? contractionManager.contractions[index + 1] : nil,
                                     index: index + 1
                                 )
-                                .listRowBackground(AppColors.secondaryBackground)
+                                .listRowBackground(Color.white)
                             }
                             .onDelete { indexSet in
                                 contractionManager.deleteContraction(at: indexSet)
                             }
+                        }
+
+                        // 통증 수준 그래프
+                        Section(header: Text("통증 수준 변화").foregroundColor(AppColors.textSecondary)) {
+                            PainLevelChart(contractions: contractionManager.contractions)
+                                .listRowBackground(Color.white)
                         }
                     }
                     .scrollContentBackground(.hidden)
@@ -205,6 +211,140 @@ struct ContractionDetailRow: View {
             return String(format: "%d분 %02d초", minutes, seconds)
         } else {
             return String(format: "%d초", seconds)
+        }
+    }
+}
+
+// 통증 수준 그래프
+struct PainLevelChart: View {
+    let contractions: [Contraction]
+
+    var painData: [(index: Int, level: Int)] {
+        let contractionsWithPain = contractions.reversed().enumerated().compactMap { (index, contraction) -> (index: Int, level: Int)? in
+            if let painLevel = contraction.painLevel, painLevel > 0 {
+                return (index + 1, painLevel)
+            }
+            return nil
+        }
+        return Array(contractionsWithPain.prefix(10)) // 최근 10개만 표시
+    }
+
+    var maxPainLevel: Int {
+        painData.map { $0.level }.max() ?? 10
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            if painData.isEmpty {
+                VStack(spacing: 8) {
+                    Image(systemName: "chart.bar")
+                        .font(.system(size: 40))
+                        .foregroundColor(.gray.opacity(0.5))
+
+                    Text("통증 수준 데이터가 없습니다")
+                        .font(.system(size: 14))
+                        .foregroundColor(.secondary)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 40)
+            } else {
+                // 그래프 제목과 범례
+                HStack {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("통증 수준 추이")
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundColor(.primary)
+
+                        Text("최근 \(painData.count)회 기록")
+                            .font(.system(size: 12))
+                            .foregroundColor(.secondary)
+                    }
+
+                    Spacer()
+
+                    // 평균 통증 수준
+                    VStack(alignment: .trailing, spacing: 2) {
+                        Text("평균")
+                            .font(.system(size: 11))
+                            .foregroundColor(.secondary)
+
+                        Text("\(String(format: "%.1f", Double(painData.map { $0.level }.reduce(0, +)) / Double(painData.count)))")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.red)
+                    }
+                }
+
+                // 막대 그래프
+                GeometryReader { geometry in
+                    HStack(alignment: .bottom, spacing: 4) {
+                        ForEach(painData, id: \.index) { data in
+                            VStack(spacing: 4) {
+                                // 통증 수준 숫자
+                                Text("\(data.level)")
+                                    .font(.system(size: 10, weight: .semibold))
+                                    .foregroundColor(.red)
+
+                                // 막대
+                                Rectangle()
+                                    .fill(
+                                        LinearGradient(
+                                            colors: [painColor(for: data.level), painColor(for: data.level).opacity(0.7)],
+                                            startPoint: .top,
+                                            endPoint: .bottom
+                                        )
+                                    )
+                                    .frame(height: CGFloat(data.level) / CGFloat(maxPainLevel) * 120)
+                                    .cornerRadius(4)
+
+                                // 진통 번호
+                                Text("#\(data.index)")
+                                    .font(.system(size: 9))
+                                    .foregroundColor(.secondary)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                    }
+                }
+                .frame(height: 160)
+                .padding(.vertical, 8)
+
+                // 통증 수준 설명
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("통증 수준 안내")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundColor(.secondary)
+
+                    HStack(spacing: 12) {
+                        painLevelIndicator(range: "1-3", color: .orange, label: "낮음")
+                        painLevelIndicator(range: "4-6", color: Color(red: 1.0, green: 0.3, blue: 0.3), label: "보통")
+                        painLevelIndicator(range: "7-10", color: .red, label: "높음")
+                    }
+                }
+                .padding(.top, 8)
+            }
+        }
+        .padding(16)
+    }
+
+    func painColor(for level: Int) -> Color {
+        if level <= 3 {
+            return .orange
+        } else if level <= 6 {
+            return Color(red: 1.0, green: 0.3, blue: 0.3)
+        } else {
+            return .red
+        }
+    }
+
+    func painLevelIndicator(range: String, color: Color, label: String) -> some View {
+        HStack(spacing: 4) {
+            Circle()
+                .fill(color)
+                .frame(width: 8, height: 8)
+
+            Text("\(range): \(label)")
+                .font(.system(size: 10))
+                .foregroundColor(.secondary)
         }
     }
 }

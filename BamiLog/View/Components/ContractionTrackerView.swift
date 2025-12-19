@@ -12,12 +12,14 @@ struct ContractionTrackerView: View {
     @EnvironmentObject var contractionManager: ContractionManager
     @State private var isShowingHistory = false
     @State private var showDeleteAlert = false
+    @State private var currentDuration: TimeInterval = 0
+    @State private var timer: Timer?
 
     var body: some View {
         NavigationView {
             ZStack {
-                // 배경 - 다크/라이트 모드 대응
-                AppColors.background
+                // 배경 - 회색
+                Color(red: 0.95, green: 0.95, blue: 0.95)
                     .ignoresSafeArea()
 
                 ScrollView {
@@ -36,30 +38,99 @@ struct ContractionTrackerView: View {
                             .padding(.horizontal, 16)
                         }
 
-                        // 진통 기록 버튼
-                        Button(action: {
-                            contractionManager.recordContraction()
-                        }) {
-                            HStack(spacing: 10) {
-                                Image(systemName: "plus.circle.fill")
-                                    .font(.system(size: 24))
-                                Text("진통 시작")
-                                    .font(.system(size: 20, weight: .bold))
+                        // 진통 기록 버튼 영역
+                        if contractionManager.isContractionInProgress {
+                            // 진통 진행 중 - 타이머와 버튼들
+                            VStack(spacing: 12) {
+                                // 타이머 표시
+                                VStack(spacing: 8) {
+                                    Text("진통 진행 중")
+                                        .font(.system(size: 16, weight: .semibold))
+                                        .foregroundColor(AppColors.textSecondary)
+
+                                    Text(formatDuration(currentDuration))
+                                        .font(.system(size: 48, weight: .bold))
+                                        .foregroundColor(.orange)
+                                        .monospacedDigit()
+                                }
+                                .padding(.vertical, 20)
+                                .frame(maxWidth: .infinity)
+                                .background(AppColors.cardBackground)
+                                .cornerRadius(14)
+
+                                // 버튼들
+                                HStack(spacing: 12) {
+                                    // 취소 버튼
+                                    Button(action: {
+                                        stopTimer()
+                                        contractionManager.cancelContraction()
+                                    }) {
+                                        HStack(spacing: 8) {
+                                            Image(systemName: "xmark.circle.fill")
+                                                .font(.system(size: 20))
+                                            Text("취소")
+                                                .font(.system(size: 18, weight: .semibold))
+                                        }
+                                        .foregroundColor(.white)
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 14)
+                                        .background(Color.red.opacity(0.8))
+                                        .cornerRadius(12)
+                                    }
+
+                                    // 종료 버튼
+                                    Button(action: {
+                                        stopTimer()
+                                        contractionManager.endContraction()
+                                    }) {
+                                        HStack(spacing: 8) {
+                                            Image(systemName: "checkmark.circle.fill")
+                                                .font(.system(size: 20))
+                                            Text("진통 종료")
+                                                .font(.system(size: 18, weight: .semibold))
+                                        }
+                                        .foregroundColor(.white)
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 14)
+                                        .background(
+                                            LinearGradient(
+                                                colors: [Color.green, Color.green.opacity(0.8)],
+                                                startPoint: .leading,
+                                                endPoint: .trailing
+                                            )
+                                        )
+                                        .cornerRadius(12)
+                                    }
+                                }
                             }
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background(
-                                LinearGradient(
-                                    colors: [Color.blue, Color.cyan],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
+                            .padding(.horizontal, 16)
+                        } else {
+                            // 진통 시작 버튼
+                            Button(action: {
+                                contractionManager.startContraction()
+                                startTimer()
+                            }) {
+                                HStack(spacing: 10) {
+                                    Image(systemName: "plus.circle.fill")
+                                        .font(.system(size: 24))
+                                    Text("진통 시작")
+                                        .font(.system(size: 20, weight: .bold))
+                                }
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 16)
+                                .background(
+                                    LinearGradient(
+                                        colors: [Color.blue, Color.cyan],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
                                 )
-                            )
-                            .cornerRadius(14)
-                            .shadow(color: Color.blue.opacity(0.3), radius: 8, x: 0, y: 4)
+                                .cornerRadius(14)
+                                .shadow(color: Color.blue.opacity(0.3), radius: 8, x: 0, y: 4)
+                            }
+                            .padding(.horizontal, 16)
                         }
-                        .padding(.horizontal, 16)
 
                         // 최근 진통 목록
                         if !contractionManager.contractions.isEmpty {
@@ -128,7 +199,40 @@ struct ContractionTrackerView: View {
             } message: {
                 Text("모든 진통 기록을 삭제하시겠습니까?")
             }
+            .onAppear {
+                // 앱 시작 시 진통이 진행 중이었다면 타이머 재시작
+                if contractionManager.isContractionInProgress {
+                    startTimer()
+                }
+            }
+            .onDisappear {
+                stopTimer()
+            }
         }
+    }
+
+    // 타이머 시작
+    private func startTimer() {
+        currentDuration = 0
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            if let startTime = contractionManager.contractionStartTime {
+                currentDuration = Date().timeIntervalSince(startTime)
+            }
+        }
+    }
+
+    // 타이머 중지
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+        currentDuration = 0
+    }
+
+    // 시간 포맷팅
+    private func formatDuration(_ duration: TimeInterval) -> String {
+        let minutes = Int(duration) / 60
+        let seconds = Int(duration) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 }
 
@@ -169,29 +273,157 @@ struct StageCard: View {
 struct StatisticsCard: View {
     let averageInterval: Double?
     let lastInterval: TimeInterval?
+    var userRole: UserRole = .firstTimeMother // 기본값: 초산모
+
+    // 간격 변화량 계산
+    var intervalChange: Double? {
+        guard let avg = averageInterval, let last = lastInterval else { return nil }
+        return (last / 60) - avg // 분 단위로 변환하여 차이 계산
+    }
+
+    // 간격 변화 텍스트
+    var changeText: String {
+        guard let change = intervalChange else { return "" }
+        let absChange = abs(change)
+        if change < -0.5 {
+            return String(format: "%.1f분 감소", absChange)
+        } else if change > 0.5 {
+            return String(format: "%.1f분 증가", absChange)
+        } else {
+            return "유지"
+        }
+    }
+
+    // 간격 변화 색상
+    var changeColor: Color {
+        guard let change = intervalChange else { return .gray }
+        if change < -0.5 {
+            return .red // 간격이 줄어들고 있음 (주의)
+        } else if change > 0.5 {
+            return .green // 간격이 늘어남 (안정)
+        } else {
+            return .orange // 유지
+        }
+    }
+
+    // 역할별 행동 가이드
+    var actionGuide: (text: String, color: Color, icon: String)? {
+        guard let last = lastInterval else { return nil }
+        let minutes = last / 60
+
+        // 초산모 기준
+        if userRole == .firstTimeMother {
+            if minutes <= 5 {
+                return ("즉시 병원으로 출발하세요!", Color(red: 0.9, green: 0.2, blue: 0.2), "exclamationmark.triangle.fill")
+            } else if minutes <= 10 {
+                return ("병원 갈 준비를 시작하세요", Color(red: 1.0, green: 0.5, blue: 0.0), "car.fill")
+            } else if minutes <= 15 {
+                return ("병원에 연락하고 준비하세요", Color(red: 1.0, green: 0.7, blue: 0.0), "phone.fill")
+            } else if minutes <= 20 {
+                return ("진통 간격을 계속 기록하세요", Color(red: 0.3, green: 0.6, blue: 1.0), "clock.fill")
+            } else {
+                return ("규칙적인 진통인지 확인하세요", Color(red: 0.5, green: 0.5, blue: 0.5), "checkmark.circle.fill")
+            }
+        }
+        // 경산모 기준 (더 빠르게 진행됨!)
+        else if userRole == .experiencedMother {
+            if minutes <= 5 {
+                return ("즉시 병원으로 출발하세요!", Color(red: 0.9, green: 0.2, blue: 0.2), "exclamationmark.triangle.fill")
+            } else if minutes <= 10 {
+                return ("즉시 병원으로 출발하세요!", Color(red: 0.9, green: 0.2, blue: 0.2), "exclamationmark.triangle.fill")
+            } else if minutes <= 15 {
+                return ("지금 바로 병원 가세요! (경산모)", Color(red: 0.9, green: 0.3, blue: 0.2), "car.fill")
+            } else if minutes <= 20 {
+                return ("병원 갈 준비를 하세요", Color(red: 1.0, green: 0.5, blue: 0.0), "phone.fill")
+            } else {
+                return ("진통이 빨리 진행될 수 있습니다", Color(red: 1.0, green: 0.7, blue: 0.0), "clock.fill")
+            }
+        }
+        // 아빠 기준 (경산모 기준 따름 - 안전하게)
+        else {
+            if minutes <= 5 {
+                return ("즉시 병원으로 출발하세요!", Color(red: 0.9, green: 0.2, blue: 0.2), "exclamationmark.triangle.fill")
+            } else if minutes <= 10 {
+                return ("병원 갈 준비를 시작하세요", Color(red: 1.0, green: 0.5, blue: 0.0), "car.fill")
+            } else if minutes <= 15 {
+                return ("병원에 연락하고 준비하세요", Color(red: 1.0, green: 0.7, blue: 0.0), "phone.fill")
+            } else if minutes <= 20 {
+                return ("진통 간격을 계속 기록하세요", Color(red: 0.3, green: 0.6, blue: 1.0), "clock.fill")
+            } else {
+                return ("규칙적인 진통인지 확인하세요", Color(red: 0.5, green: 0.5, blue: 0.5), "checkmark.circle.fill")
+            }
+        }
+    }
 
     var body: some View {
-        HStack(spacing: 20) {
-            // 평균 간격
-            StatItem(
-                icon: "chart.bar.fill",
-                title: "평균 간격",
-                value: averageInterval.map { formatInterval($0 * 60) } ?? "-",
-                color: .cyan
-            )
+        VStack(spacing: 12) {
+            // 간격 정보
+            HStack(spacing: 16) {
+                // 평균 간격
+                VStack(spacing: 4) {
+                    Text("평균 간격")
+                        .font(.system(size: 11))
+                        .foregroundColor(AppColors.textSecondary)
 
-            Divider()
-                .background(AppColors.textSecondary)
+                    Text(averageInterval.map { formatInterval($0 * 60) } ?? "-")
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundColor(.cyan)
+                }
+                .frame(maxWidth: .infinity)
 
-            // 최근 간격
-            StatItem(
-                icon: "clock.fill",
-                title: "최근 간격",
-                value: lastInterval.map { formatInterval($0) } ?? "-",
-                color: .blue
-            )
+                Divider()
+                    .frame(height: 40)
+                    .background(AppColors.textSecondary.opacity(0.3))
+
+                // 최근 간격
+                VStack(spacing: 4) {
+                    Text("최근 간격")
+                        .font(.system(size: 11))
+                        .foregroundColor(AppColors.textSecondary)
+
+                    Text(lastInterval.map { formatInterval($0) } ?? "-")
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundColor(.blue)
+
+                    // 변화량 표시
+                    if intervalChange != nil {
+                        HStack(spacing: 3) {
+                            Image(systemName: (intervalChange ?? 0) < 0 ? "arrow.down" : (intervalChange ?? 0) > 0 ? "arrow.up" : "minus")
+                                .font(.system(size: 9))
+                            Text(changeText)
+                                .font(.system(size: 10, weight: .semibold))
+                        }
+                        .foregroundColor(changeColor)
+                    }
+                }
+                .frame(maxWidth: .infinity)
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 16)
+
+            // 행동 가이드
+            if let guide = actionGuide {
+                Divider()
+                    .background(AppColors.textSecondary.opacity(0.2))
+
+                HStack(spacing: 10) {
+                    Image(systemName: guide.icon)
+                        .font(.system(size: 16))
+                        .foregroundColor(guide.color)
+
+                    Text(guide.text)
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundColor(guide.color)
+
+                    Spacer()
+                }
+                .padding(.horizontal, 16)
+                .padding(.bottom, 12)
+            } else {
+                Spacer()
+                    .frame(height: 4)
+            }
         }
-        .padding(16)
         .background(AppColors.cardBackground)
         .cornerRadius(14)
     }
@@ -473,7 +705,7 @@ struct ContractionSummaryBar: View {
         }
         .padding(.vertical, 12)
         .padding(.horizontal, 14)
-        .background(AppColors.secondaryBackground)
+        .background(Color(red: 0.95, green: 0.95, blue: 0.95))
         .cornerRadius(12)
     }
 }

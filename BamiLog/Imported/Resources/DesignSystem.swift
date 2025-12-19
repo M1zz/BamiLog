@@ -258,11 +258,13 @@ struct SectionHeaderWithSettings: View {
     let title: String
     let settingsAction: () -> Void
     let resetAction: (() -> Void)?
+    let stopTimerAction: (() -> Void)?
 
-    init(_ title: String, settingsAction: @escaping () -> Void, resetAction: (() -> Void)? = nil) {
+    init(_ title: String, settingsAction: @escaping () -> Void, resetAction: (() -> Void)? = nil, stopTimerAction: (() -> Void)? = nil) {
         self.title = title
         self.settingsAction = settingsAction
         self.resetAction = resetAction
+        self.stopTimerAction = stopTimerAction
     }
 
     var body: some View {
@@ -275,6 +277,15 @@ struct SectionHeaderWithSettings: View {
             Spacer()
 
             HStack(spacing: 16) {
+                // 타이머 중지 버튼 (옵션)
+                if let stopTimerAction = stopTimerAction {
+                    Button(action: stopTimerAction) {
+                        Image(systemName: "stop.circle.fill")
+                            .font(.system(size: 18))
+                            .foregroundColor(.orange)
+                    }
+                }
+
                 // 초기화 버튼 (옵션)
                 if let resetAction = resetAction {
                     Button(action: resetAction) {

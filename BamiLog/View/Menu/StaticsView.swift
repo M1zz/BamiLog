@@ -57,50 +57,87 @@ struct StaticsView: View {
         .padding()
         
         .onAppear {
+            // 1. 먼저 로컬 데이터 로드 (즉시 표시)
+            loadLocalData()
+
+            // 2. Firebase 로그인 상태면 동기화 시도
             let user = Auth.auth().currentUser
             if let user = user {
-                let email = user.email ?? "error"
-                let groupCode = UserDefaults.standard.string(forKey: "groupCode") ?? "error"
-                let userItemRef = ref.child(groupCode)
-                
-                userItemRef.observe(.value, with: { snapShot in
-                    guard let snapData = snapShot.value as? String else {
-                        print("??!!")
-                        return
-                        
-                    }
-                    
-                    do {
-                        milkDatas = try! JSONDecoder().decode([MilkRecord].self,
-                                                                  from: snapData.data(using: .utf8)!)
-                        testMilkDatas = recordByDay(milkrecords: milkDatas)
-                        
-                        milkKeys = getGroupKeys(milkrecords: milkDatas)
-                        milkKeys = milkKeys.sorted {$0.compare($1, options: .numeric) == .orderedDescending}
-                        
-                        PersitenceManager.save(favorites: milkDatas, key: .feed)
-                    } catch {
-                        print("encoding error")
-                    }
-                })
-            } else {
-                print("로컬 작동")
-                PersitenceManager.retrieveFavorites(key: .feed) { result in
-                    switch result {
-                    case .success(let datas):
-                        milkDatas = datas
-                        testMilkDatas = recordByDay(milkrecords: milkDatas)
-                        
-                        milkKeys = getGroupKeys(milkrecords: milkDatas)
-                        milkKeys = milkKeys.sorted {$0.compare($1, options: .numeric) == .orderedDescending}
-                    case .failure(_):
-                        DispatchQueue.main.async {
-                            print("Error")
-                        }
-                    }
-                }
+                syncWithFirebase()
             }
         }
+    }
+
+    // MARK: - Load Local Data
+    private func loadLocalData() {
+        print("📱 로컬 데이터 로드 중...")
+        PersitenceManager.retrieveFavorites(key: .feed) { result in
+            switch result {
+            case .success(let datas):
+                print("✅ 로컬 데이터 로드 성공: \(datas.count)개")
+                milkDatas = datas
+                testMilkDatas = recordByDay(milkrecords: milkDatas)
+
+                milkKeys = getGroupKeys(milkrecords: milkDatas)
+                milkKeys = milkKeys.sorted {$0.compare($1, options: .numeric) == .orderedDescending}
+            case .failure(let error):
+                print("❌ 로컬 데이터 로드 실패: \(error)")
+            }
+        }
+    }
+
+    // MARK: - Sync with Firebase
+    private func syncWithFirebase() {
+        print("☁️ Firebase 동기화 시도...")
+        let groupCode = UserDefaults.standard.string(forKey: "groupCode") ?? "error"
+        let userItemRef = ref.child(groupCode)
+
+        userItemRef.observe(.value, with: { snapShot in
+            guard let snapData = snapShot.value as? String else {
+                print("⚠️ Firebase 데이터 없음 - 로컬 데이터 사용")
+                return
+            }
+
+            do {
+                let firebaseData = try JSONDecoder().decode([MilkRecord].self,
+                                                           from: snapData.data(using: .utf8)!)
+                print("✅ Firebase 데이터 로드 성공: \(firebaseData.count)개")
+
+                // Firebase 데이터를 로컬과 병합
+                mergeData(firebaseData: firebaseData)
+            } catch {
+                print("❌ Firebase 디코딩 오류: \(error)")
+                // Firebase 오류 시 로컬 데이터 계속 사용
+            }
+        })
+    }
+
+    // MARK: - Merge Data
+    private func mergeData(firebaseData: [MilkRecord]) {
+        // Firebase 데이터와 로컬 데이터 병합 (중복 제거)
+        var allRecords = milkDatas + firebaseData
+
+        // ID 기반 중복 제거
+        var uniqueRecords: [MilkRecord] = []
+        var seenIds = Set<UUID>()
+
+        for record in allRecords {
+            if !seenIds.contains(record.id) {
+                seenIds.insert(record.id)
+                uniqueRecords.append(record)
+            }
+        }
+
+        print("📊 병합된 데이터: 로컬 \(milkDatas.count)개 + Firebase \(firebaseData.count)개 = 총 \(uniqueRecords.count)개")
+
+        milkDatas = uniqueRecords
+        testMilkDatas = recordByDay(milkrecords: milkDatas)
+
+        milkKeys = getGroupKeys(milkrecords: milkDatas)
+        milkKeys = milkKeys.sorted {$0.compare($1, options: .numeric) == .orderedDescending}
+
+        // 병합된 데이터를 로컬에 저장
+        PersitenceManager.save(favorites: milkDatas, key: .feed)
     }
 
     private func sendDeleteDate(records: [String? : [MilkRecord]]) {
