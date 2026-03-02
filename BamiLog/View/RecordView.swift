@@ -548,7 +548,7 @@ struct RecordView: View {
         print("💾 기록 저장 시작...")
 
         // 1. 로컬 저장 (최우선 - 항상 실행)
-        PersitenceManager.updateWith(favorite: record, actionType: .add, key: .feed) { error in
+        PersistenceManager.updateWith(favorite: record, actionType: .add, key: .feed) { error in
             if let error = error {
                 print("❌ 로컬 저장 실패: \(error)")
             } else {
@@ -572,7 +572,7 @@ struct RecordView: View {
         let locationRef = ref.child(groupCode)
 
         // 로컬에서 모든 기록 가져오기
-        PersitenceManager.retrieveFavorites(key: .feed) { result in
+        PersistenceManager.retrieveFavorites(key: .feed) { result in
             switch result {
             case .success(let allRecords):
                 do {
@@ -597,7 +597,7 @@ struct RecordView: View {
     // MARK: - Smart Defaults
     private func loadAndApplySmartDefaults() {
         // 최근 기록 불러오기
-        PersitenceManager.retrieveFavorites(key: .feed) { result in
+        PersistenceManager.retrieveFavorites(key: .feed) { result in
             switch result {
             case .success(let records):
                 recentRecords = records

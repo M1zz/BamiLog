@@ -192,7 +192,7 @@ struct MenuView: View {
             loginStatus = UserDefaults.standard.bool(forKey: "loginStatus")
 
             // Load milk records for statistics
-            PersitenceManager.retrieveFavorites(key: .feed) { result in
+            PersistenceManager.retrieveFavorites(key: .feed) { result in
                 switch result {
                 case .success(let records):
                     milkRecords = records
@@ -269,7 +269,7 @@ struct MenuView: View {
         }
 
         // 생성된 샘플 데이터 저장
-        PersitenceManager.save(favorites: sampleRecords, key: .feed)
+        PersistenceManager.save(favorites: sampleRecords, key: .feed)
 
         // 상태 업데이트
         milkRecords = sampleRecords
@@ -341,6 +341,7 @@ struct SummaryStatsCard: View {
 
     // 타이머를 위한 현재 시간 상태
     @State private var currentTime = Date()
+    @State private var feedingTimer: Timer?
 
     // 오늘 기록 필터링
     var todayRecords: [MilkRecord] {
@@ -582,10 +583,13 @@ struct SummaryStatsCard: View {
             }
         }
         .onAppear {
-            // 1초마다 현재 시간 업데이트 (타이머 효과)
-            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            feedingTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
                 currentTime = Date()
             }
+        }
+        .onDisappear {
+            feedingTimer?.invalidate()
+            feedingTimer = nil
         }
     }
 

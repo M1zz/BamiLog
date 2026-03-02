@@ -68,17 +68,16 @@ struct BottleFeedingView: View {
                         UserDefaults.standard.setValue(encoded, forKey: "milkRecord")
                     }
                     
-                    PersitenceManager.updateWith(favorite: milkRecord, actionType: .add, key: .feed) { error in
-                        guard error != nil else {
+                    PersistenceManager.updateWith(favorite: milkRecord, actionType: .add, key: .feed) { error in
+                        guard error == nil else {
                             DispatchQueue.main.async {
-                                print("OK!")
+                                print("Error: \(error!.rawValue)")
                             }
                             return
                         }
-                        
+
                         DispatchQueue.main.async {
-                            //self.presentGFAlert(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
-                            print("Error")
+                            print("OK!")
                         }
                     }
                     

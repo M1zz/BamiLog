@@ -174,8 +174,8 @@ struct BathTimerView: View {
             }
         }
         .onAppear {
-            if (profile?.name.isEmpty) == nil {
-                PersitenceManager.retrieveProfile(key: .profile) { result in
+            if profile == nil {
+                PersistenceManager.retrieveProfile(key: .profile) { result in
                     switch result {
                     case .success(let babyProfile):
                         profile = babyProfile

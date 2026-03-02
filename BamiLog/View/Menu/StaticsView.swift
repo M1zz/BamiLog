@@ -30,14 +30,13 @@ struct StaticsView: View {
                 ForEach(milkKeys, id: \.self) { key in
                     Section {
                         
-                        ForEach(testMilkDatas[key]!, id: \.self) { item in
+                        ForEach(testMilkDatas[key] ?? [], id: \.self) { item in
                             RecordRowView(item: item)
                         }
-                        
+
                         .onDelete { indexSet in
-                            //print(testMilkDatas.count)
-                            testMilkDatas[key]!.remove(atOffsets: indexSet)
-                            PersitenceManager.deleteWith(records: testMilkDatas, actionType: .add, key: .feed) { error in
+                            testMilkDatas[key]?.remove(atOffsets: indexSet)
+                            PersistenceManager.deleteWith(records: testMilkDatas, actionType: .add, key: .feed) { error in
                                 print("todo")
                             }
                             sendDeleteDate(records: testMilkDatas)
@@ -47,7 +46,7 @@ struct StaticsView: View {
                         Text(key)
                     }
                     .onAppear {
-                        testMilkDatas[key] = testMilkDatas[key]!.sorted(by: {
+                        testMilkDatas[key] = testMilkDatas[key]?.sorted(by: {
                             $0.startTime.compare($1.startTime) == .orderedDescending
                         })
                     }
@@ -71,7 +70,7 @@ struct StaticsView: View {
     // MARK: - Load Local Data
     private func loadLocalData() {
         print("📱 로컬 데이터 로드 중...")
-        PersitenceManager.retrieveFavorites(key: .feed) { result in
+        PersistenceManager.retrieveFavorites(key: .feed) { result in
             switch result {
             case .success(let datas):
                 print("✅ 로컬 데이터 로드 성공: \(datas.count)개")
@@ -99,8 +98,11 @@ struct StaticsView: View {
             }
 
             do {
-                let firebaseData = try JSONDecoder().decode([MilkRecord].self,
-                                                           from: snapData.data(using: .utf8)!)
+                guard let jsonData = snapData.data(using: .utf8) else {
+                    print("❌ Firebase 데이터 UTF-8 변환 실패")
+                    return
+                }
+                let firebaseData = try JSONDecoder().decode([MilkRecord].self, from: jsonData)
                 print("✅ Firebase 데이터 로드 성공: \(firebaseData.count)개")
 
                 // Firebase 데이터를 로컬과 병합
@@ -137,7 +139,7 @@ struct StaticsView: View {
         milkKeys = milkKeys.sorted {$0.compare($1, options: .numeric) == .orderedDescending}
 
         // 병합된 데이터를 로컬에 저장
-        PersitenceManager.save(favorites: milkDatas, key: .feed)
+        PersistenceManager.save(favorites: milkDatas, key: .feed)
     }
 
     private func sendDeleteDate(records: [String? : [MilkRecord]]) {
@@ -157,17 +159,11 @@ struct StaticsView: View {
            
             
             do {
-               
-                do {
-                    let jsonData = try JSONEncoder().encode(tempMilkRecord)
-                    let jsonString = String.init(data: jsonData, encoding: .utf8)
-                    locationRef.setValue(jsonString)
-                } catch {
-                    #warning("에러처리")
-                    print("encoding error")
-                }
+                let jsonData = try JSONEncoder().encode(tempMilkRecord)
+                let jsonString = String(data: jsonData, encoding: .utf8)
+                locationRef.setValue(jsonString)
             } catch {
-                
+                print("❌ Firebase 데이터 인코딩 실패: \(error)")
             }
         }
     }

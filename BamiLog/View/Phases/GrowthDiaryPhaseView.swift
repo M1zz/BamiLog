@@ -89,9 +89,6 @@ struct GrowthDiaryPhaseView: View {
                 }
             }
         }
-        .sheet(isPresented: $appState.showSettings) {
-            SettingsView()
-        }
         .sheet(isPresented: $showAddMenu) {
             AddMenuSheet(selectedTab: $selectedTab)
         }

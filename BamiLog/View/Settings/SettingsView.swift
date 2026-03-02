@@ -510,7 +510,7 @@ struct SettingsBabyProfileCard: View {
     }
 
     func loadProfile() {
-        PersitenceManager.retrieveProfile(key: .profile) { result in
+        PersistenceManager.retrieveProfile(key: .profile) { result in
             switch result {
             case .success(let babyProfile):
                 profile = babyProfile

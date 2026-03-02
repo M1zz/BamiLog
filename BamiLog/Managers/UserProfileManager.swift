@@ -12,7 +12,7 @@ class UserProfileManager: ObservableObject {
     @Published var profile: UserProfile?
     @Published var hasCompletedOnboarding: Bool = false
 
-    private let profileFileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("userProfile.json")
+    private let profileFileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("userProfile.json")
 
     init() {
         loadProfile()

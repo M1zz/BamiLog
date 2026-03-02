@@ -39,7 +39,7 @@ struct EnterProfileView: View {
                     UserDefaults.standard.setValue(encoded, forKey: "profile")
                 }
                 
-//                if PersitenceManager.saveProfile(profile: profile, key: .profile) != nil {
+//                if PersistenceManager.saveProfile(profile: profile, key: .profile) != nil {
 //                    print("\(name) \(birthDate) 저장되었습니다.")
 //                } else {
 //                    print("error 남")

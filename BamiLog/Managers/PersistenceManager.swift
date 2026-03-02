@@ -1,5 +1,5 @@
 //
-//  PersitenceManager.swift
+//  PersistenceManager.swift
 //  BamiLog
 //
 //  Created by hyunho lee on 2023/01/01.
@@ -19,7 +19,7 @@ enum GFError: String, Error {
     case alreadyInFavorites = "You've already favorited this user. You must REALLY like them!"
 }
 
-enum PersitenceManager {
+enum PersistenceManager {
     
     static private let defaults = UserDefaults.standard
     
@@ -31,7 +31,7 @@ enum PersitenceManager {
     
     
     static func updateWith(favorite: MilkRecord, actionType: PersistenceActionType, key: Keys, completed: @escaping (GFError?) -> Void) {
-        retrieveFavorites(key: PersitenceManager.Keys(rawValue: key.rawValue) ?? .feed) { result in
+        retrieveFavorites(key: PersistenceManager.Keys(rawValue: key.rawValue) ?? .feed) { result in
             switch result {
             case .success(var favorites):
                 
@@ -67,8 +67,7 @@ enum PersitenceManager {
         }
 
         
-        // print("\(tempMilkRecord) ?? \(tempMilkRecord.count) ")
-        retrieveFavorites(key: PersitenceManager.Keys(rawValue: key.rawValue) ?? .feed) { result in
+        retrieveFavorites(key: PersistenceManager.Keys(rawValue: key.rawValue) ?? .feed) { result in
             switch result {
             case .success(var favorites):
                 
@@ -88,40 +87,6 @@ enum PersitenceManager {
             }
         }
     }
-    
-//    static func allUpdateWith(records: [String? : [MilkRecord]], actionType: PersistenceActionType, key: Keys, completed: @escaping (GFError?) -> Void) {
-//        let favorite: MilkRecord! = MilkRecord(startTime: Date())
-//        var tempMilkRecord: [MilkRecord] = []
-//        
-//        for element in records {
-//            element.value.forEach { item in
-//                tempMilkRecord.append(item)
-//            }
-//        }
-//
-//        
-//        // print("\(tempMilkRecord) ?? \(tempMilkRecord.count) ")
-//        retrieveFavorites(key: PersitenceManager.Keys(rawValue: key.rawValue) ?? .feed) { result in
-//            switch result {
-//            case .success(var favorites):
-//                
-//                switch actionType {
-//                case .add:
-//                    favorites = tempMilkRecord
-//                    
-//                case .remove:
-//                    print("remove")
-//                    //favorites.removeAll { $0.startTime == favorite.startTime }
-//                }
-//                
-//                completed(save(favorites: favorites, key: key))
-//                
-//            case .failure(let error):
-//                completed(error)
-//            }
-//        }
-//    }
-    
     static func retrieveFavorites(key:Keys, completed: @escaping (Result<[MilkRecord], GFError>) -> Void) {
         guard let favoritesData = defaults.object(forKey: key.rawValue) as? Data else {
             completed(.success([]))

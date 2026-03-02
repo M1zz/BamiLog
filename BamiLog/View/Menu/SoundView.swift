@@ -11,9 +11,10 @@ import AVFoundation
 
 struct SoundView: View {
     @Binding var isSoundViewShow: Bool
-    @State var audioPlayer: AVAudioPlayer!
+    @State var audioPlayer: AVAudioPlayer?
 
     @State var progress: CGFloat = 0.0
+    @State private var progressTimer: Timer?
     @State private var playing: Bool = true
     @State private var infinite: Bool = true
     @State var duration: Double = 0.0
@@ -100,12 +101,13 @@ struct SoundView: View {
                     HStack(spacing: 60) {
                         // 재생/일시정지 버튼
                         Button(action: {
-                            if audioPlayer.isPlaying {
+                            guard let player = audioPlayer else { return }
+                            if player.isPlaying {
                                 playing = false
-                                audioPlayer.pause()
+                                player.pause()
                             } else {
                                 playing = true
-                                audioPlayer.play()
+                                player.play()
                             }
                         }) {
                             ZStack {
@@ -162,6 +164,8 @@ struct SoundView: View {
             }
         }
         .onDisappear {
+            progressTimer?.invalidate()
+            progressTimer = nil
             audioPlayer?.stop()
         }
         .onAppear {
@@ -180,22 +184,26 @@ struct SoundView: View {
         AudioManager.shared.setupRemoteCommandCenter()
         AudioManager.shared.setupRemoteCommandInfoCenter(track: "she")
         audioPlayer = AudioManager.shared.player
-        audioPlayer.prepareToPlay()
+
+        guard let player = audioPlayer else { return }
+        player.prepareToPlay()
 
         // 시간 포맷팅
-        formattedDuration = formatter.string(from: TimeInterval(audioPlayer.duration)) ?? "00:00"
-        duration = audioPlayer.duration
+        formattedDuration = formatter.string(from: TimeInterval(player.duration)) ?? "00:00"
+        duration = player.duration
 
         // 타이머 시작
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-            if !audioPlayer.isPlaying {
+        progressTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            guard let player = audioPlayer else { return }
+            if !player.isPlaying {
                 playing = false
             }
-            progress = CGFloat(audioPlayer.currentTime / audioPlayer.duration)
-            formattedProgress = formatter.string(from: TimeInterval(audioPlayer.currentTime)) ?? "00:00"
+            guard player.duration > 0 else { return }
+            progress = CGFloat(player.currentTime / player.duration)
+            formattedProgress = formatter.string(from: TimeInterval(player.currentTime)) ?? "00:00"
         }
 
-        audioPlayer.numberOfLoops = -1
+        player.numberOfLoops = -1
     }
 }
 

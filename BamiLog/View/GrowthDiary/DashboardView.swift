@@ -41,7 +41,7 @@ struct DashboardView: View {
 
     private func loadData() {
         // 프로필 로드
-        PersitenceManager.retrieveProfile(key: .profile) { result in
+        PersistenceManager.retrieveProfile(key: .profile) { result in
             if case .success(let profile) = result {
                 babyProfile = profile
             }
