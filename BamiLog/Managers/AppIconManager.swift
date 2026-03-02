@@ -13,61 +13,34 @@ class AppIconManager {
     private init() {}
 
     enum AppIcon: String, CaseIterable {
-        // 페이즈별 아이콘
-        case phase1 = "AppIcon-Phase1"
+        case defaultIcon = "AppIcon"
         case phase2 = "AppIcon-Phase2"
-        case phase3 = "AppIcon-Phase3"
-        case phase4 = "AppIcon-Phase4"
-
-        // 역할별 아이콘
-        case firstTimeMother = "AppIcon-FirstTimeMother"
-        case experiencedMother = "AppIcon-ExperiencedMother"
-        case father = "AppIcon-Father"
 
         var displayName: String {
             switch self {
-            case .phase1:
-                return "진통 추적"
+            case .defaultIcon:
+                return "기본"
             case .phase2:
                 return "호흡 가이드"
-            case .phase3:
-                return "아기 돌봄"
-            case .phase4:
-                return "성장 기록"
-            case .firstTimeMother:
-                return "초산모"
-            case .experiencedMother:
-                return "경산모"
-            case .father:
-                return "아빠"
             }
         }
 
+        /// nil이면 기본 아이콘으로 복원
         var iconName: String? {
             switch self {
-            case .phase1:
-                return "AppIcon-Phase1"
+            case .defaultIcon:
+                return nil
             case .phase2:
                 return "AppIcon-Phase2"
-            case .phase3:
-                return "AppIcon-Phase3"
-            case .phase4:
-                return "AppIcon-Phase4"
-            case .firstTimeMother:
-                return "AppIcon-FirstTimeMother"
-            case .experiencedMother:
-                return "AppIcon-ExperiencedMother"
-            case .father:
-                return "AppIcon-Father"
             }
         }
     }
 
     var currentIcon: AppIcon {
         guard let iconName = UIApplication.shared.alternateIconName else {
-            return .phase1 // 기본 아이콘
+            return .defaultIcon
         }
-        return AppIcon(rawValue: iconName) ?? .phase1
+        return AppIcon(rawValue: iconName) ?? .defaultIcon
     }
 
     func setIcon(_ icon: AppIcon, completion: ((Bool) -> Void)? = nil) {
@@ -96,33 +69,17 @@ class AppIconManager {
     func setIconForPhase(_ phase: AppPhase) {
         let icon: AppIcon
         switch phase {
-        case .menstrualTracking:
-            icon = .phase1
         case .pregnancy:
             icon = .phase2
-        case .laborAndBirth:
-            icon = .phase3
-        case .babyCare:
-            icon = .phase3
-        case .growthDiary:
-            icon = .phase4
+        default:
+            icon = .defaultIcon
         }
 
         setIcon(icon)
     }
 
-    // 사용자 역할에 따라 아이콘 변경
     func setIconForUserRole(_ role: UserRole) {
-        let icon: AppIcon
-        switch role {
-        case .firstTimeMother:
-            icon = .firstTimeMother
-        case .experiencedMother:
-            icon = .experiencedMother
-        case .father:
-            icon = .father
-        }
-
-        setIcon(icon)
+        // 역할별 아이콘 에셋이 아직 없으므로 기본 아이콘 유지
+        setIcon(.defaultIcon)
     }
 }
